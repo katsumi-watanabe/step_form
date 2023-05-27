@@ -36,7 +36,7 @@
   --section-gap: 160px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
@@ -48,7 +48,16 @@
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
   }
-}
+  .contact-form .select h3[data-v-fca6c24c] {
+    color: #41b883 !important;
+  }
+  .selects .select-button[data-v-fca6c24c] {
+    color: #7a7f7d;
+  }
+  .select h4[data-v-fca6c24c] {
+    color: #7a7f7d;
+  }
+} */
 
 *,
 *::before,
