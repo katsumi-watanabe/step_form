@@ -12,4 +12,13 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+#footer{
+  background: #35495e;
+}
+#footer p{
+  padding: 10px 0;
+  text-align: center;
+  color: #fff;
+}
+</style>
