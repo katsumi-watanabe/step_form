@@ -7,21 +7,19 @@
     <div v-for="question in currentQuestions" :key="question.id">
       <h2>{{ question.question }}</h2>
       <div v-if="question.type === 'checkbox'">
-        <input :type="question.type" :id="question.id + answer" :value="answer" v-for="answer in question.answer" :key="answer" @change="toggleCheckbox(question.id, answer)" />
-        <label :for="question.id + answer" v-for="answer in question.answer" :key="answer">
-          {{ answer }}
-        </label>
+        <div v-for="answer in question.answer" :key="answer">
+          <input :id="question.id + answer" :type="question.type" :name="question.id" :value="question.id + answer">
+          <label :for="question.id + answer" style="cursor:pointer;">{{ answer }}</label>
+        </div>
       </div>
       <div v-else-if="question.type === 'radio'">
         <div v-for="answer in question.answer" :key="answer">
-          <input :type="question.type" :id="question.id + answer" :value="answer" :name="question.id" />
-          <label :for="question.id + answer" @click="handleRadioClick(question.id, answer)">
-            {{ answer }}
-          </label>
+          <input :id="question.id + answer" :type="question.type" :name="question.id" :value="question.id + answer">
+          <label :for="question.id + answer">{{ answer }}</label>
         </div>
       </div>
       <div v-else-if="question.type === 'select'">
-        <select :id="question.id" @change="handleSelectChange(question.id, $event.target.value)">
+        <select :id="question.id">
           <option v-for="answer in question.answer" :value="answer" :key="answer">{{ answer }}</option>
         </select>
       </div>
