@@ -4,10 +4,11 @@
       <!-- 現在ページの表示 -->
 
     <button @click="showRandomQuestion">診断を開始する！</button>
-    <div v-for="question in currentQuestions" :key="question.id" data-v-fca6c24c="" class="contact-form">
+    <div v-for="(question, i) in currentQuestions" :key="question.id" data-v-fca6c24c="" class="contact-form">
       <div data-v-fca6c24c="" class="select">
         <h3 class="contact-title" data-v-fca6c24c="">
           {{ question.question }}
+          <!-- {{ i + 1 }} -->
           <span class="optional" data-v-fca6c24c="">任意</span>
         </h3>
         <p class="mt20" data-v-fca6c24c="">
@@ -21,7 +22,6 @@
               :for="question.id + answer"
               data-v-fca6c24c=""
               class="select-button"
-              :class="{ selected: isSelect }"
             >
               {{ answer }}
             </label>
@@ -53,7 +53,6 @@ export default {
     return {
       currentQuestions: [],
       selectedAnswers: {},
-      isSelect: false
     };
 
   },
