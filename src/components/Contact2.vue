@@ -15,10 +15,25 @@
           <i class="fas fa-asterisk tblue fa-fw" data-v-fca6c24c="">
           </i>複数選択可能</span>
         </p>
+        <div class="grid-container">
           <div v-for="answer in question.answer" :key="answer" data-v-fca6c24c="" class="selects">
-            <label :for="question.id + answer" data-v-fca6c24c="" class="select-button" :class="{  }">{{ answer }}</label>
-            <input :id="question.id + answer" data-v-fca6c24c="" type="checkbox" :name="question.id" :value="question.id + answer">
+            <label
+              :for="question.id + answer"
+              data-v-fca6c24c=""
+              class="select-button"
+              :class="{ selected: isSelect }"
+            >
+              {{ answer }}
+            </label>
+            <input
+              :id="question.id + answer"
+              data-v-fca6c24c=""
+              type="checkbox"
+              :name="question.id"
+              :value="question.id + answer"
+            >
           </div>
+        </div>
           <div data-v-fca6c24c="" class="btn_wrap">
             <button data-v-fca6c24c="" class="b-next">次へ</button>
           </div>
@@ -37,11 +52,13 @@ export default {
   data() {
     return {
       currentQuestions: [],
-      selectedAnswers: {} // 初期
+      selectedAnswers: {},
+      isSelect: false
     };
 
   },
   methods: {
+    // 質問選択
     showRandomQuestion() {
       const questionCounts = 5;
       const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5);
@@ -70,8 +87,17 @@ export default {
 .selects.sepa2 { */
   /* grid-template-columns: repeat(2,1fr); */
 /* } */
+.selects {
+  margin-top: 0;
+}
 .selects .select-button.selected[data-v-fca6c24c] {
-    color: #fff;
-    background: #41b883;
+  color: #fff;
+  background: #41b883;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 </style>
