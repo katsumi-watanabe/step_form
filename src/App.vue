@@ -1,12 +1,14 @@
 <template>
   <Header />
   <Contact />
+  <Contact2 />
   <Footer />
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
-import Contact from '@/components/Contact2.vue'
+import Contact from '@/components/Contact.vue'
+import Contact2 from '@/components/Contact2.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
@@ -14,6 +16,7 @@ export default {
   components: {
     Header,
     Contact,
+    Contact2,
     Footer,
   },
 }
