@@ -4,7 +4,7 @@
       <!-- 現在ページの表示 -->
 
     <button @click="showRandomQuestion">診断を開始する！</button>
-    <div v-for="(question, i) in currentQuestions" :key="question.id" data-v-fca6c24c="" class="contact-form">
+    <div v-for="(question, index) in currentQuestions" :key="question.id" data-v-fca6c24c="" class="contact-form">
       <div data-v-fca6c24c="" class="select">
         <h3 class="contact-title">
           {{ question.question }}
@@ -16,11 +16,16 @@
           </span>
         </p>
         <div class="grid-container">
-          <div v-for="answer in question.answer" :key="i" class="selects">
-            <label :for="'question' + i" class="select-button" data-v-fca6c24c="">
+          <div v-for="(answer, a) in question.answer" :key="i" class="selects">
+            <label
+              :for="'question' + a"
+              class="select-button"
+              data-v-fca6c24c=""
+              :class="{'selected': selectedItems.includes(answer)}"
+            >
               {{ answer }}
             </label>
-            <input :id="'question' + i" type="checkbox" :value="answer" v-model="selectedItems" data-v-fca6c24c="">
+            <input :id="'question' + a" type="checkbox" :value="answer" v-model="selectedItems" data-v-fca6c24c="">
           </div>
         </div>
         <div data-v-fca6c24c="" class="btn_wrap">
