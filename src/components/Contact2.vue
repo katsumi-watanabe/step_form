@@ -6,55 +6,44 @@
     <button @click="showRandomQuestion">診断を開始する！</button>
     <div v-for="(question, i) in currentQuestions" :key="question.id" data-v-fca6c24c="" class="contact-form">
       <div data-v-fca6c24c="" class="select">
-        <h3 class="contact-title" data-v-fca6c24c="">
+        <h3 class="contact-title">
           {{ question.question }}
-          <!-- {{ i + 1 }} -->
           <span class="optional" data-v-fca6c24c="">任意</span>
         </h3>
         <p class="mt20" data-v-fca6c24c="">
-        <span class="t12" data-v-fca6c24c="">
-          <i class="fas fa-asterisk tblue fa-fw" data-v-fca6c24c="">
-          </i>複数選択可能</span>
+          <span class="t12" data-v-fca6c24c="">
+            <i class="fas fa-asterisk tblue fa-fw" data-v-fca6c24c=""></i>複数選択可能
+          </span>
         </p>
         <div class="grid-container">
-          <div v-for="answer in question.answer" :key="answer" data-v-fca6c24c="" class="selects">
-            <label
-              :for="question.id + answer"
-              data-v-fca6c24c=""
-              class="select-button"
-            >
+          <div v-for="answer in question.answer" :key="i" class="selects">
+            <label :for="'question' + i" class="select-button" data-v-fca6c24c="">
               {{ answer }}
             </label>
-            <input
-              :id="question.id + answer"
-              data-v-fca6c24c=""
-              type="checkbox"
-              :name="question.id"
-              :value="question.id + answer"
-            >
+            <input :id="'question' + i" type="checkbox" :value="answer" v-model="selectedItems" data-v-fca6c24c="">
           </div>
         </div>
-          <div data-v-fca6c24c="" class="btn_wrap">
-            <button data-v-fca6c24c="" class="b-next">次へ</button>
-          </div>
+        <div data-v-fca6c24c="" class="btn_wrap">
+          <button data-v-fca6c24c="" class="b-next">次へ</button>
+        </div>
       </div>
     </div>
-
-        <label class="select-button"  style="cursor:pointer;"></label>
+      <label class="select-button"  style="cursor:pointer;"></label>
     </div>
   </div>
 </template>
 
 <script>
-import questions from '@/data/questions.json';
+import { ref } from 'vue'
+import questions from '@/data/questions.json'
 
 export default {
   data() {
     return {
       currentQuestions: [],
-      selectedAnswers: {},
+      // selectedAnswers: {},
+      selectedItems: []
     };
-
   },
   methods: {
     // 質問選択
@@ -63,7 +52,7 @@ export default {
       const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5);
       this.currentQuestions = shuffledQuestions.slice(0, questionCounts);
     }
-  }
+  },
 }
 </script>
 
