@@ -17,6 +17,7 @@
         </p>
         <div class="grid-container">
           <div v-for="(answer, a) in question.answer" :key="i" class="selects">
+            <!-- ここを直すid,for被ってる -->
             <label
               :for="'question' + a"
               class="select-button"
@@ -25,7 +26,13 @@
             >
               {{ answer }}
             </label>
-            <input :id="'question' + a" type="checkbox" :value="answer" v-model="selectedItems" data-v-fca6c24c="">
+            <!-- ここを直すid,for被ってる -->
+            <input
+              :id="'question' + a"
+              type="checkbox"
+              :value="answer"
+              v-model="selectedItems"
+              data-v-fca6c24c="">
           </div>
         </div>
         <div data-v-fca6c24c="" class="btn_wrap">
