@@ -19,7 +19,7 @@
           <div v-for="(answer, a) in question.answer" :key="i" class="selects">
             <!-- ここを直すid,for被ってる -->
             <label
-              :for="'question' + a"
+              :for="'question' + question.id + a"
               class="select-button"
               data-v-fca6c24c=""
               :class="{'selected': selectedItems.includes(answer)}"
@@ -28,7 +28,7 @@
             </label>
             <!-- ここを直すid,for被ってる -->
             <input
-              :id="'question' + a"
+              :id="'question' + question.id + a"
               type="checkbox"
               :value="answer"
               v-model="selectedItems"
