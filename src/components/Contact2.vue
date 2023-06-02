@@ -19,12 +19,18 @@
 
       <div class="contact-form first-form">
         <button class="check-button" @click="showRandomQuestion">
-            診断を開始する！
+          診断を開始する！
         </button>
       </div>
 
-      <div v-for="(question, index) in currentQuestions" :key="question.id" data-v-fca6c24c="" class="contact-form">
-        <div :style="{ display: index === 1 ? 'block' : 'none' }" data-v-fca6c24c="" class="select">
+      <div
+        v-for="(question, index) in currentQuestions"
+        :key="question.id"
+        v-show="currentPage === index + 1"
+        data-v-fca6c24c=""
+        class="contact-form"
+      >
+        <div data-v-fca6c24c="" class="select">
           <h3 class="contact-title">
             {{ question.question }}
             <span class="optional" data-v-fca6c24c="">任意</span>
@@ -36,7 +42,6 @@
           </p>
           <div class="grid-container">
             <div v-for="(answer, a) in question.answer" :key="i" class="selects">
-              <!-- ここを直すid,for被ってる -->
               <label
                 :for="'question' + question.id + a"
                 class="select-button"
@@ -45,7 +50,6 @@
               >
                 {{ answer }}
               </label>
-              <!-- ここを直すid,for被ってる -->
               <input
                 :id="'question' + question.id + a"
                 type="checkbox"
@@ -55,7 +59,7 @@
             </div>
           </div>
           <div data-v-fca6c24c="" class="btn_wrap">
-            <button data-v-fca6c24c="" class="b-next">次へ</button>
+            <button  @click="onNext" data-v-fca6c24c="" class="b-next">次へ</button>
           </div>
         </div>
       </div>
@@ -69,10 +73,24 @@ import { ref } from 'vue'
 import questions from '@/data/questions.json'
 
 export default {
+  setup () {
+    let currentPage = ref(1)
+
+    return {
+      currentPage
+    }
+  },
   data() {
     return {
       currentQuestions: [],
-      selectedItems: []
+      selectedItems: [],
+      // selectedItems: {
+      //   page1: {},
+      //   page2: {},
+      //   page3: {},
+      //   page4: {},
+      //   page5: {},
+      // }
     };
   },
   methods: {
@@ -81,6 +99,19 @@ export default {
       const questionCounts = 5;
       const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5);
       this.currentQuestions = shuffledQuestions.slice(0, questionCounts);
+    },
+    onNext() {
+      // 現在のページのデータを保持する
+      if (this.currentStep === 1) {
+        this.selectedItems.page1 = { ...this.selectedItems.page1 }; // オブジェクトのコピーを作成するなど、必要な処理を追加
+      } else if (this.currentStep === 2) {
+        this.selectedItems.page2 = { ...this.selectedItems.page2 };
+      } else if (this.currentStep === 3) {
+        this.selectedItems.page3 = { ...this.selectedItems.page3 };
+      }
+
+      // 次のステップに進む処理を追加する
+      this.currentStep++;
     }
   },
 }
