@@ -2,24 +2,27 @@
   <div class="form-section">
     <div class="container">
       <!-- 現在ページの表示 -->
-      <!-- <div class="current-num">
-        <div class="num-circle" :class="checkCurrentPage(1)">
-          {{ checkCurrentPage(1)['passed-page'] ? "✔︎" : 1 }}
+      <div class="current-num" data-v-fca6c24c="">
+        <div class="num-circle">
+          {{ currentStep >= 1 ? "✔︎" : 1 }}
         </div>
-        <div class="num-circle" :class="checkCurrentPage(2)">
-          {{ checkCurrentPage(2)['passed-page'] ? "✔︎" : 2 }}
+        <div class="num-circle">
+          {{ currentStep >= 2 ? "✔︎" : 2 }}
         </div>
-        <div class="num-circle" :class="checkCurrentPage(3)">
-          {{ checkCurrentPage(3)['passed-page'] ? "✔︎" : 3 }}
+        <div class="num-circle">
+          {{ currentStep >= 3 ? "✔︎" : 3 }}
         </div>
-        <div class="num-circle" :class="checkCurrentPage(4)">
-          {{ checkCurrentPage(4)['passed-page'] ? "✔︎" : 4 }}
+        <div class="num-circle">
+          {{ currentStep >= 4 ? "✔︎" : 4 }}
         </div>
-      </div> -->
+        <div class="num-circle">
+          {{ currentStep >= 5 ? "✔︎" : 5 }}
+        </div>
+      </div>
 
       <div class="contact-form first-form" v-show="currentStep === 0">
         <button
-          class="check-button"
+          class="start-button"
           @click="showRandomQuestion"
         >
           診断を開始する！
@@ -34,17 +37,17 @@
         class="contact-form"
       >
         <div data-v-fca6c24c="" class="select">
-          <h3 class="contact-title">
-            {{ question.question }}
-            <span class="optional" data-v-fca6c24c="">任意</span>
-          </h3>
+          <h3 class="contact-title">{{ question.question }}</h3>
           <p class="mt20" data-v-fca6c24c="">
             <span class="t12" data-v-fca6c24c="">
-              <i class="fas fa-asterisk tblue fa-fw" data-v-fca6c24c=""></i>複数選択可能
             </span>
           </p>
           <div class="grid-container">
-            <div v-for="(answer, a) in question.answer" :key="i" class="selects">
+            <div
+              v-for="(answer, a) in question.answer"
+              :key="i"
+              class="selects"
+            >
               <label
                 :for="'question' + question.id + a"
                 class="select-button"
@@ -118,14 +121,46 @@ export default {
   display: flex;
   justify-content: center;
 }
-.check-button {
-  font-weight: bold;
-  margin: 0 auto;
-  width: 55%;
-  height: 35%;
+.start-button {
+  display: inline-block;
+  padding: 10px 20px;
   font-size: 16px;
-  border: 2px solid #41b883;
-  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #41b883;
+  color: #ffffff;
+  border-radius: 4px;
+  border: none;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.current-num .num-circle {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 3px solid #ddd;
+  border-radius: 15px;
+  background: #ffffff;
+  text-align: center;
+  line-height: 26px;
+  color: #bbb;
+  font-weight: bold;
+}
+.current-num .current-page {
+  border: 3px solid #35495e;
+  color: #35495e;
+}
+.current-num .passed-page {
+  background-color: #41b883;
+  border: 3px solid #41b883;
+  color: #fff;
+}
+
+.start-button:hover {
+  background-color: #32a672;
+  cursor: pointer;
 }
 .selects {
   margin-top: 0;
