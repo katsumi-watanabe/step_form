@@ -17,8 +17,11 @@
         </div>
       </div> -->
 
-      <div class="contact-form first-form">
-        <button class="check-button" @click="showRandomQuestion">
+      <div class="contact-form first-form" v-show="currentStep === 0">
+        <button
+          class="check-button"
+          @click="showRandomQuestion"
+        >
           診断を開始する！
         </button>
       </div>
@@ -26,7 +29,7 @@
       <div
         v-for="(question, index) in currentQuestions"
         :key="question.id"
-        v-show="currentPage === index + 1"
+        v-show="currentStep === index + 1"
         data-v-fca6c24c=""
         class="contact-form"
       >
@@ -69,28 +72,21 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { isRuntimeOnly, ref } from 'vue'
 import questions from '@/data/questions.json'
 
 export default {
   setup () {
-    let currentPage = ref(1)
+    let currentStep = ref(0)
 
     return {
-      currentPage
+      currentStep
     }
   },
   data() {
     return {
       currentQuestions: [],
       selectedItems: [],
-      // selectedItems: {
-      //   page1: {},
-      //   page2: {},
-      //   page3: {},
-      //   page4: {},
-      //   page5: {},
-      // }
     };
   },
   methods: {
@@ -99,15 +95,12 @@ export default {
       const questionCounts = 5;
       const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5);
       this.currentQuestions = shuffledQuestions.slice(0, questionCounts);
+      this.onNext()
     },
     onNext() {
       // 現在のページのデータを保持する
-      if (this.currentStep === 1) {
-        this.selectedItems.page1 = { ...this.selectedItems.page1 }; // オブジェクトのコピーを作成するなど、必要な処理を追加
-      } else if (this.currentStep === 2) {
-        this.selectedItems.page2 = { ...this.selectedItems.page2 };
-      } else if (this.currentStep === 3) {
-        this.selectedItems.page3 = { ...this.selectedItems.page3 };
+      if (this.currentStep > 0) {
+        this.selectedItems[this.currentStep - 1] = { ...this.selectedItems[this.currentStep - 1] };
       }
 
       // 次のステップに進む処理を追加する
