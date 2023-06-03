@@ -2,222 +2,265 @@
     {
       "id": 1,
       "question": "質問1",
-      "answer":
-      [
-        "回答1-1",
-        "回答1-2",
-        "回答1-3",
-        "回答1-4"
-      ],
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答1-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答1-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答1-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答1-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 2,
       "question": "質問2",
-      "answer":
-      [
-        "回答2-1",
-        "回答2-2",
-        "回答2-3",
-        "回答2-4"
-      ],
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答2-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答2-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答2-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答2-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 3,
       "question": "質問3",
-      "answer":
-      [
-        "回答3-1",
-        "回答3-2",
-        "回答3-3",
-        "回答3-4"
-      ],
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答3-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答3-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答3-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答3-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 4,
       "question": "質問4",
-      "answer":
-      [
-        "回答4-1",
-        "回答4-2",
-        "回答4-3",
-        "回答4-4"
-      ],
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答4-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答4-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答4-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答4-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 5,
       "question": "質問5",
-      "answer":
-      [
-        "回答5-1",
-        "回答5-2",
-        "回答5-3",
-        "回答5-4"
-      ],
-    
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答5-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答5-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答5-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答5-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 6,
       "question": "質問6",
-      "answer":
-      [
-        "回答6-1",
-        "回答6-2",
-        "回答6-3",
-        "回答6-4"
-      ],
-    
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答6-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答6-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答6-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答6-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 7,
       "question": "質問7",
-      "answer":
-      [
-        "回答7-1",
-        "回答7-2",
-        "回答7-3",
-        "回答7-4"
-      ],
-    
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答7-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答7-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答7-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答7-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 8,
       "question": "質問8",
-      "answer":
-      [
-        "回答8-1",
-        "回答8-2",
-        "回答8-3",
-        "回答8-4"
-      ],
-      "type": "radio",
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答8-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答8-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答8-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答8-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 9,
       "question": "質問9",
-      "answer":
-      [
-        "回答9-1",
-        "回答9-2",
-        "回答9-3",
-        "回答9-4"
-      ],
-    
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答9-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答9-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答9-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答9-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 10,
       "question": "質問10",
-      "answer":
-      [
-        "回答10-1",
-        "回答10-2",
-        "回答10-3",
-        "回答10-4"
-      ],
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答10-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答10-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答10-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答10-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 11,
       "question": "質問11",
-      "answer":
-      [
-        "回答11-1",
-        "回答11-2",
-        "回答11-3",
-        "回答11-4"
-      ],
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答11-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答11-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答11-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答11-4",
+          "point_category": "D"
+        }
       ]
     },
     {
       "id": 12,
       "question": "質問12",
-      "answer":
-      [
-        "回答12-1",
-        "回答12-2",
-        "回答12-3",
-        "回答12-4"
-      ],
-      "point":
-      [
-        1,
-        2,
-        3,
-        4
+      "answer": [
+        {
+          "answer_pattern": "回答12-1",
+          "point_category": "A"
+        },
+        {
+          "answer_pattern": "回答12-2",
+          "point_category": "B"
+        },
+        {
+          "answer_pattern": "回答12-3",
+          "point_category": "C"
+        },
+        {
+          "answer_pattern": "回答12-4",
+          "point_category": "D"
+        }
       ]
     }
 ]

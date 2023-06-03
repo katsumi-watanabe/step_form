@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <!-- <Contact /> -->
+  <Contact />
   <Contact2 />
   <Footer />
 </template>

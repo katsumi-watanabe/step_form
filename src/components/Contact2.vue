@@ -45,19 +45,21 @@
                 :for="'question' + question.id + a"
                 class="select-button"
                 data-v-fca6c24c=""
-                :class="{'selected': selectedItems.includes(answer)}"
+                :class="{'selected': selectedItems['question' + question.id + '_' + 'answer' + (a + 1)] === true}"
               >
-                {{ answer }}
+                {{ answer.answer_pattern }}
               </label>
               <input
                 :id="'question' + question.id + a"
                 type="checkbox"
                 :value="answer"
-                v-model="selectedItems"
-                data-v-fca6c24c="">
+                v-model="selectedItems['question' + question.id + '_' + 'answer' + (a + 1)]"
+                data-v-fca6c24c=""
+              >
             </div>
           </div>
           <div data-v-fca6c24c="" class="btn_wrap">
+            <button class="b-back" @click="onBack">戻る</button>
             <button  @click="onNext" data-v-fca6c24c="" class="b-next">次へ</button>
           </div>
         </div>
@@ -82,7 +84,8 @@ export default {
   data() {
     return {
       currentQuestions: [],
-      selectedItems: [],
+      selectedItems: {
+      },
     };
   },
   methods: {
@@ -93,6 +96,7 @@ export default {
       this.currentQuestions = shuffledQuestions.slice(0, questionCounts);
       this.onNext()
     },
+    // 次へボタン
     onNext() {
       // 現在のページのデータを保持する
       if (this.currentStep > 0) {
@@ -101,6 +105,10 @@ export default {
 
       // 次のステップに進む処理を追加する
       this.currentStep++;
+    },
+    // 戻るボタン
+    onBack() {
+      this.currentStep--;
     },
     getStepClass(step) {
       return {
@@ -190,5 +198,14 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+}
+
+.btn_wrap .b-back{
+  height: 40px;
+  padding: 0 30px;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 30px;
+  color: #35495e;
 }
 </style>
