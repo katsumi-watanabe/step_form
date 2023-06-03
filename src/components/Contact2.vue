@@ -3,20 +3,13 @@
     <div class="container">
       <!-- 現在ページの表示 -->
       <div class="current-num" data-v-fca6c24c="">
-        <div class="num-circle">
-          {{ currentStep >= 1 ? "✔︎" : 1 }}
-        </div>
-        <div class="num-circle">
-          {{ currentStep >= 2 ? "✔︎" : 2 }}
-        </div>
-        <div class="num-circle">
-          {{ currentStep >= 3 ? "✔︎" : 3 }}
-        </div>
-        <div class="num-circle">
-          {{ currentStep >= 4 ? "✔︎" : 4 }}
-        </div>
-        <div class="num-circle">
-          {{ currentStep >= 5 ? "✔︎" : 5 }}
+        <div
+          v-for="step in 5"
+          :key="step"
+          :class="getStepClass(step)"
+          v-show="currentStep != 0 && currentStep < 6"
+        >
+          {{ currentStep > step ? "✔︎" : step }}
         </div>
       </div>
 
@@ -108,7 +101,15 @@ export default {
 
       // 次のステップに進む処理を追加する
       this.currentStep++;
-    }
+    },
+    getStepClass(step) {
+      return {
+        'num-circle': true,
+        'unchecked': this.currentStep < step,
+        'current': this.currentStep === step,
+        'checked': this.currentStep > step,
+      };
+    },
   },
 }
 </script>
@@ -148,9 +149,15 @@ export default {
   color: #bbb;
   font-weight: bold;
 }
-.current-num .current-page {
+
+.current-num .current {
   border: 3px solid #35495e;
   color: #35495e;
+}
+.current-num .checked {
+  background-color: #41b883;
+  border: 3px solid #41b883;
+  color: #fff;
 }
 .current-num .passed-page {
   background-color: #41b883;
@@ -158,10 +165,19 @@ export default {
   color: #fff;
 }
 
+
 .start-button:hover {
   background-color: #32a672;
   cursor: pointer;
 }
+.contact-form .select h3{
+  width: 70%;
+  border-left: 5px solid #41b883;
+  margin: 1rem 0 0 0;
+  padding: .5em 0 .5em .5em;
+  color: #0e271c;
+}
+
 .selects {
   margin-top: 0;
 }
