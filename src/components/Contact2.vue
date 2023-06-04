@@ -100,7 +100,6 @@ export default {
       this.onNext()
     },
     toggleCheckButton() {
-      console.log('チェックボックスがクリックされました。');
     },
     // 次へボタン
     onNext() {
@@ -216,8 +215,9 @@ export default {
   color: #0e271c;
   line-height: 1;
   font-weight: bold;
-  left: 36%;
-  top: 10%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* 画面中央に配置するための相対位置指定 */
 }
 
 .grid-container {
