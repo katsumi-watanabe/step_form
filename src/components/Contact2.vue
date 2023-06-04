@@ -38,11 +38,10 @@
           <div class="grid-container">
             <div
               v-for="(answer, a) in question.answer"
-              :key="i"
               class="selects"
             >
               <label
-                :for="'question' + question.id + a"
+                :for="'question' + question.id + '_' + a"
                 class="select-button"
                 data-v-fca6c24c=""
                 :class="{'selected': selectedItems['question' + question.id + '_' + 'answer' + (a + 1)] === true}"
@@ -50,7 +49,7 @@
                 {{ answer.answer_pattern }}
               </label>
               <input
-                :id="'question' + question.id + a"
+                :id="'question' + question.id + '_' + a"
                 type="checkbox"
                 :value="answer"
                 v-model="selectedItems['question' + question.id + '_' + 'answer' + (a + 1)]"
@@ -60,7 +59,7 @@
           </div>
           <div data-v-fca6c24c="" class="btn_wrap">
             <button class="b-back" @click="onBack">戻る</button>
-            <button  @click="onNext" data-v-fca6c24c="" class="b-next">次へ</button>
+            <button @click="onNext" data-v-fca6c24c="" class="b-next">次へ</button>
           </div>
         </div>
       </div>
