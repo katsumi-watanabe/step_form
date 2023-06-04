@@ -47,12 +47,16 @@
                 :class="{'selected': selectedItems['question' + question.id + '_' + 'answer' + (a + 1)] === true}"
               >
                 {{ answer.answer_pattern }}
+                <span v-if="selectedItems['question' + question.id + '_' + 'answer' + (a + 1)]" class="click_number">
+                  {{ a + 1 }}
+                </span>
               </label>
               <input
                 :id="'question' + question.id + '_' + a"
                 type="checkbox"
                 :value="answer"
                 v-model="selectedItems['question' + question.id + '_' + 'answer' + (a + 1)]"
+                @change="toggleCheckButton"
                 data-v-fca6c24c=""
               >
             </div>
@@ -94,6 +98,9 @@ export default {
       const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5);
       this.currentQuestions = shuffledQuestions.slice(0, questionCounts);
       this.onNext()
+    },
+    toggleCheckButton() {
+      console.log('チェックボックスがクリックされました。');
     },
     // 次へボタン
     onNext() {
@@ -188,9 +195,29 @@ export default {
 .selects {
   margin-top: 0;
 }
+
+.selects .select-button {
+  position: relative;
+  align-items: center;
+}
 .selects .select-button.selected[data-v-fca6c24c] {
   color: #fff;
   background: #41b883;
+}
+
+.click_number {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px solid #0e271c;
+  font-size: 2.8rem;
+  color: #0e271c;
+  line-height: 1;
+  font-weight: bold;
+  left: 36%;
+  top: 10%;
 }
 
 .grid-container {
