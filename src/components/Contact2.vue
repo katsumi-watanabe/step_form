@@ -90,17 +90,15 @@ export default {
     }
 
     const toggleCheckButton = (questionId, answerId) => {
-  const key = `question${questionId}_answer${answerId}`;
-  const questionIndex = currentStep.value - 1;
+      const key = `question${questionId}_answer${answerId}`;
+      const questionIndex = currentStep.value - 1;
 
-  if (!selectedItems[questionIndex]) {
-    selectedItems[questionIndex] = {};
-  }
+      if (!selectedItems[questionIndex]) {
+        selectedItems[questionIndex] = {};
+      }
 
-  selectedItems[questionIndex][key] = !selectedItems[questionIndex][key];
-};
-
-
+      selectedItems[questionIndex][key] = !selectedItems[questionIndex][key];
+    };
 
     const onNext = () => {
       const questionIndex = currentStep.value - 1
