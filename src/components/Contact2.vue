@@ -73,58 +73,71 @@
 </template>
 
 <script>
-import { isRuntimeOnly, ref } from 'vue'
+import { ref, reactive } from 'vue'
 import questions from '@/data/questions.json'
 
 export default {
-  setup () {
-    let currentStep = ref(0)
+  setup() {
+    const currentStep = ref(0)
+    const currentQuestions = ref([])
+    const selectedItems = reactive({});
 
-    return {
-      currentStep
+    const showRandomQuestion = () => {
+      const questionCounts = 5
+      const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5)
+      currentQuestions.value = shuffledQuestions.slice(0, questionCounts)
+      onNext()
     }
-  },
-  data() {
-    return {
-      currentQuestions: [],
-      selectedItems: {
-      },
-    };
-  },
-  methods: {
-    // 質問選択
-    showRandomQuestion() {
-      const questionCounts = 5;
-      const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5);
-      this.currentQuestions = shuffledQuestions.slice(0, questionCounts);
-      this.onNext()
-    },
-    toggleCheckButton() {
-    },
-    // 次へボタン
-    onNext() {
-      // 現在のページのデータを保持する
-      if (this.currentStep > 0) {
-        this.selectedItems[this.currentStep - 1] = { ...this.selectedItems[this.currentStep - 1] };
+
+    const toggleCheckButton = (questionId, answerId) => {
+  const key = `question${questionId}_answer${answerId}`;
+  const questionIndex = currentStep.value - 1;
+
+  if (!selectedItems[questionIndex]) {
+    selectedItems[questionIndex] = {};
+  }
+
+  selectedItems[questionIndex][key] = !selectedItems[questionIndex][key];
+};
+
+
+
+    const onNext = () => {
+      const questionIndex = currentStep.value - 1
+
+      if (!selectedItems[questionIndex]) {
+        selectedItems[questionIndex] = []
       }
 
-      // 次のステップに進む処理を追加する
-      this.currentStep++;
-    },
-    // 戻るボタン
-    onBack() {
-      this.currentStep--;
-    },
-    getStepClass(step) {
+      currentStep.value++
+    }
+
+    const onBack = () => {
+      currentStep.value--
+    }
+
+    const getStepClass = (step) => {
       return {
         'num-circle': true,
-        'unchecked': this.currentStep < step,
-        'current': this.currentStep === step,
-        'checked': this.currentStep > step,
-      };
-    },
-  },
+        unchecked: currentStep.value < step,
+        current: currentStep.value === step,
+        checked: currentStep.value > step
+      }
+    }
+
+    return {
+      currentStep,
+      currentQuestions,
+      selectedItems,
+      showRandomQuestion,
+      toggleCheckButton,
+      onNext,
+      onBack,
+      getStepClass
+    }
+  }
 }
+
 </script>
 
 <style scoped>
