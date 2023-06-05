@@ -48,12 +48,11 @@
               >
                 {{ answer.answer_pattern }}
                 <span class="click_number">
-                  <!-- {{ selectedItems.length }} -->
+                  {{ (selectedItems.indexOf(answer) + 1) % 5 }}
                 </span>
               </label>
               <input
                 :id="'question' + question.id + '_' + a"
-                :name="'question' + question.id + '_' + a"
                 type="checkbox"
                 :value="answer"
                 v-model="selectedItems"
