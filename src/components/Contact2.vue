@@ -44,19 +44,19 @@
                 :for="'question' + question.id + '_' + a"
                 class="select-button"
                 data-v-fca6c24c=""
-                :class="{'selected': selectedItems['question' + question.id + '_' + 'answer' + (a + 1)] === true}"
+                :class="{'selected': selectedItems.includes(answer)}"
               >
                 {{ answer.answer_pattern }}
-                <span v-if="selectedItems['question' + question.id + '_' + 'answer' + (a + 1)]" class="click_number">
-                  {{ a + 1 }}
+                <span class="click_number">
+                  <!-- {{ selectedItems.length }} -->
                 </span>
               </label>
               <input
                 :id="'question' + question.id + '_' + a"
+                :name="'question' + question.id + '_' + a"
                 type="checkbox"
                 :value="answer"
-                v-model="selectedItems['question' + question.id + '_' + 'answer' + (a + 1)]"
-                @change="toggleCheckButton"
+                v-model="selectedItems"
                 data-v-fca6c24c=""
               >
             </div>
@@ -80,7 +80,7 @@ export default {
   setup() {
     const currentStep = ref(0)
     const currentQuestions = ref([])
-    const selectedItems = reactive({});
+    const selectedItems = ref([])
 
     const showRandomQuestion = () => {
       const questionCounts = 5
@@ -88,17 +88,6 @@ export default {
       currentQuestions.value = shuffledQuestions.slice(0, questionCounts)
       onNext()
     }
-
-    const toggleCheckButton = (questionId, answerId) => {
-      const key = `question${questionId}_answer${answerId}`;
-      const questionIndex = currentStep.value - 1;
-
-      if (!selectedItems[questionIndex]) {
-        selectedItems[questionIndex] = {};
-      }
-
-      selectedItems[questionIndex][key] = !selectedItems[questionIndex][key];
-    };
 
     const onNext = () => {
       const questionIndex = currentStep.value - 1
@@ -128,7 +117,6 @@ export default {
       currentQuestions,
       selectedItems,
       showRandomQuestion,
-      toggleCheckButton,
       onNext,
       onBack,
       getStepClass
