@@ -48,7 +48,7 @@
               >
                 {{ answer.answer_pattern }}
                 <span class="click_number">
-                  {{ (selectedItems.indexOf(answer) + 1) % 5 }}
+                  {{ (selectedItems.indexOf(answer) + 1) % 5 || 1 }}
                 </span>
               </label>
               <input
