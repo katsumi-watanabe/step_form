@@ -47,8 +47,8 @@
                 :class="{'selected': selectedItems.includes(answer)}"
               >
                 {{ answer.answer_pattern }}
-                <span class="click_number">
-                  {{ (selectedItems.indexOf(answer) + 1) % 5 || 1 }}
+                <span class="click_number" v-if="isAnswerCount((selectedItems.indexOf(answer) + 1))">
+                  {{ (selectedItems.indexOf(answer) + 1) }}
                 </span>
               </label>
               <input
@@ -88,6 +88,10 @@ export default {
       onNext()
     }
 
+    function isAnswerCount(index) {
+      return index % 4 === 0;
+    }
+
     const onNext = () => {
       const questionIndex = currentStep.value - 1
 
@@ -116,6 +120,7 @@ export default {
       currentQuestions,
       selectedItems,
       showRandomQuestion,
+      isAnswerCount,
       onNext,
       onBack,
       getStepClass
