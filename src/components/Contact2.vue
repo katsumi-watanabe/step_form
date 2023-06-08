@@ -6,22 +6,22 @@
         <div
           v-for="step in 5"
           :key="step"
-          :class="getStepClass(step)"
-          v-show="currentStep != 0 && currentStep < 6"
+          :class="['num-circle', {'current': currentStep === step, 'checked': currentStep > step}]"
+          v-show="currentStep !== 0 && currentStep < 6"
         >
-          {{ currentStep > step ? "✔︎" : step }}
+          <!-- 現在のステップよりも小さい場合はチェックマークを表示、そうでなければステップ番号を表示 -->
+          {{ currentStep > step ? '✔︎' : step }}
         </div>
       </div>
 
+      <!-- 最初のフォーム -->
       <div class="contact-form first-form" v-show="currentStep === 0">
-        <button
-          class="start-button"
-          @click="showRandomQuestion"
-        >
+        <button class="start-button" @click="showRandomQuestion">
           診断を開始する！
         </button>
       </div>
 
+      <!-- 質問フォーム -->
       <div
         v-for="(question, index) in currentQuestions"
         :key="question.id"
@@ -31,32 +31,39 @@
       >
         <div data-v-fca6c24c="" class="select">
           <h3 class="contact-title">{{ question.question }}</h3>
+          <!-- 回答選択肢 -->
           <p class="mt20" data-v-fca6c24c="">
             <span class="t12" data-v-fca6c24c="">
             </span>
           </p>
           <div class="grid-container">
-            <div v-for="(answer, a) in question.answer" class="selects">
-            <label
-              :for="'question' + question.id + '_' + a"
-              class="select-button"
-              data-v-fca6c24c=""
-              :class="{'selected': selectedItems[currentStep - 1].includes(answer)}"
+            <div
+              v-for="(answer, a) in question.answer"
+              :key="a"
+              class="selects"
             >
-              {{ answer.answer_pattern }}
-              <span class="click_number">
-                {{ selectedItems[currentStep - 1].indexOf(answer) + 1 }}
-              </span>
-            </label>
-            <input
-              :id="'question' + question.id + '_' + a"
-              type="checkbox"
-              :value="answer"
-              v-model="selectedItems[currentStep - 1]"
-              data-v-fca6c24c=""
-            >
-          </div>
-
+              <label
+                :for="'question' + question.id + '_' + a"
+                data-v-fca6c24c=""
+                class="select-button"
+                :class="{'selected': selectedItems[currentStep - 1].includes(answer)}"
+              >
+                <!-- 回答パターン -->
+                {{ answer.answer_pattern }}
+                <!-- 選択された回答の番号 -->
+                <span class="click_number">
+                  {{ selectedItems[currentStep - 1].indexOf(answer) + 1 }}
+                </span>
+              </label>
+              <!-- 選択された回答をselectedItemsに追加する -->
+              <input
+                :id="'question' + question.id + '_' + a"
+                type="checkbox"
+                :value="answer"
+                v-model="selectedItems[currentStep - 1]"
+                data-v-fca6c24c=""
+              >
+            </div>
           </div>
           <div data-v-fca6c24c="" class="btn_wrap">
             <button class="b-back" @click="onBack">戻る</button>
@@ -64,7 +71,9 @@
           </div>
         </div>
       </div>
-      <label class="select-button"  style="cursor:pointer;"></label>
+
+      <!-- 選択肢外をクリックしたときの処理 -->
+      <label class="select-button" style="cursor:pointer;"></label>
     </div>
   </div>
 </template>
@@ -89,6 +98,7 @@ export default {
     const onNext = () => {
       const questionIndex = currentStep.value - 1
 
+      // 現在のステップの回答が選択されていない場合は、空の配列を追加する
       if (!selectedItems[questionIndex]) {
         selectedItems[questionIndex] = []
       }
