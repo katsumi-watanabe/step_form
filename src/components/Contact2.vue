@@ -36,29 +36,27 @@
             </span>
           </p>
           <div class="grid-container">
-            <div
-              v-for="(answer, a) in question.answer"
-              class="selects"
+            <div v-for="(answer, a) in question.answer" class="selects">
+            <label
+              :for="'question' + question.id + '_' + a"
+              class="select-button"
+              data-v-fca6c24c=""
+              :class="{'selected': selectedItems[currentStep - 1].includes(answer)}"
             >
-              <label
-                :for="'question' + question.id + '_' + a"
-                class="select-button"
-                data-v-fca6c24c=""
-                :class="{'selected': selectedItems.includes(answer)}"
-              >
-                {{ answer.answer_pattern }}
-                <span class="click_number" v-if="isAnswerCount((selectedItems.indexOf(answer) + 1))">
-                  {{ (selectedItems.indexOf(answer) + 1) }}
-                </span>
-              </label>
-              <input
-                :id="'question' + question.id + '_' + a"
-                type="checkbox"
-                :value="answer"
-                v-model="selectedItems"
-                data-v-fca6c24c=""
-              >
-            </div>
+              {{ answer.answer_pattern }}
+              <span class="click_number">
+                {{ selectedItems[currentStep - 1].indexOf(answer) + 1 }}
+              </span>
+            </label>
+            <input
+              :id="'question' + question.id + '_' + a"
+              type="checkbox"
+              :value="answer"
+              v-model="selectedItems[currentStep - 1]"
+              data-v-fca6c24c=""
+            >
+          </div>
+
           </div>
           <div data-v-fca6c24c="" class="btn_wrap">
             <button class="b-back" @click="onBack">戻る</button>
@@ -79,17 +77,13 @@ export default {
   setup() {
     const currentStep = ref(0)
     const currentQuestions = ref([])
-    const selectedItems = ref([])
+    const selectedItems = reactive(Array(5).fill([]))
 
     const showRandomQuestion = () => {
       const questionCounts = 5
       const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5)
       currentQuestions.value = shuffledQuestions.slice(0, questionCounts)
       onNext()
-    }
-
-    function isAnswerCount(index) {
-      return index % 4 === 0;
     }
 
     const onNext = () => {
@@ -120,7 +114,6 @@ export default {
       currentQuestions,
       selectedItems,
       showRandomQuestion,
-      isAnswerCount,
       onNext,
       onBack,
       getStepClass
