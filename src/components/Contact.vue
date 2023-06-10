@@ -416,6 +416,9 @@ textarea{
   line-height: 30px;
   color: #fff;
 }
+.btn_wrap .b-next:disabled{
+  background: #ccc;
+}
 .error_msg{
   width: 80%;
   margin: 20px auto 0;

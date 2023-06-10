@@ -51,7 +51,7 @@
                 <!-- 回答パターン -->
                 {{ answer.answer_pattern }}
                 <!-- 選択された回答の番号 -->
-                <span class="click_number">
+                <span class="click_number" v-if="(selectedItems[currentStep - 1].indexOf(answer) + 1) > 0">
                   {{ selectedItems[currentStep - 1].indexOf(answer) + 1 }}
                 </span>
               </label>
@@ -67,7 +67,14 @@
           </div>
           <div data-v-fca6c24c="" class="btn_wrap">
             <button class="b-back" @click="onBack">戻る</button>
-            <button @click="onNext" data-v-fca6c24c="" class="b-next">次へ</button>
+            <button
+              @click="onNext"
+              data-v-fca6c24c=""
+              class="b-next"
+              :disabled="selectedItems[currentStep - 1].length < 4"
+            >
+              次へ
+            </button>
           </div>
         </div>
       </div>
