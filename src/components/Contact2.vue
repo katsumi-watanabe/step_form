@@ -65,7 +65,11 @@
               >
             </div>
           </div>
-          <div data-v-fca6c24c="" class="btn_wrap">
+          <div
+            data-v-fca6c24c=""
+            class="btn_wrap"
+            v-if="currentStep < 5"
+          >
             <button class="b-back" @click="onBack">戻る</button>
             <button
               @click="onNext"
@@ -76,11 +80,23 @@
               次へ
             </button>
           </div>
-        </div>
+          <div
+            data-v-fca6c24c=""
+            class="btn_wrap"
+            v-else
+          >
+            <button
+              class="b-next"
+              data-v-fca6c24c=""
+              @click="onBack"
+            >
+              結果を見る
+            </button>
+          </div>
       </div>
-
+    </div>
       <!-- 選択肢外をクリックしたときの処理 -->
-      <label class="select-button" style="cursor:pointer;"></label>
+    <label class="select-button" style="cursor:pointer;"></label>
     </div>
   </div>
 </template>
@@ -96,11 +112,18 @@ export default {
     const selectedItems = reactive(Array(5).fill([]))
 
     const showRandomQuestion = () => {
-      const questionCounts = 5
-      const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5)
-      currentQuestions.value = shuffledQuestions.slice(0, questionCounts)
-      onNext()
-    }
+      const questionCounts = 5;
+      const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5);
+
+      // 各ステップの回答を格納する新しい配列を作成する
+      const newSelectedItems = Array(questionCounts).fill([]);
+
+      selectedItems.splice(0, selectedItems.length, ...newSelectedItems);
+      currentQuestions.value = shuffledQuestions.slice(0, questionCounts);
+      currentStep.value = 1; // currentStepをリセットして最初のステップに戻る
+    };
+
+
 
     const onNext = () => {
       const questionIndex = currentStep.value - 1
