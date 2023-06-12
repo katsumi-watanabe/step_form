@@ -88,12 +88,17 @@
             <button
               class="b-next"
               data-v-fca6c24c=""
-              @click="onBack"
+              @click="handleClick"
             >
               結果を見る
             </button>
           </div>
       </div>
+    </div>
+
+    <!-- 結果画面 -->
+    <div v-show="currentStep > 5">
+      <p>ここに結果が表示されます。</p>
     </div>
       <!-- 選択肢外をクリックしたときの処理 -->
     <label class="select-button" style="cursor:pointer;"></label>
@@ -123,8 +128,6 @@ export default {
       currentStep.value = 1; // currentStepをリセットして最初のステップに戻る
     };
 
-
-
     const onNext = () => {
       const questionIndex = currentStep.value - 1
 
@@ -149,6 +152,10 @@ export default {
       }
     }
 
+    const handleClick = () => {
+      return currentStep = 6;
+    }
+
     return {
       currentStep,
       currentQuestions,
@@ -156,6 +163,7 @@ export default {
       showRandomQuestion,
       onNext,
       onBack,
+      handleClick,
       getStepClass
     }
   }
