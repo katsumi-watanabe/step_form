@@ -70,7 +70,7 @@
             class="btn_wrap"
             v-if="currentStep < 5"
           >
-            <button class="b-back" @click="onBack">戻る</button>
+            <button class="b-back" @click="onBack" v-show="currentStep > 1">戻る</button>
             <button
               @click="onNext"
               data-v-fca6c24c=""
@@ -89,6 +89,7 @@
               class="b-next"
               data-v-fca6c24c=""
               @click="handleClick"
+              v-show="currentStep === 5"
             >
               結果を見る
             </button>
@@ -153,7 +154,7 @@ export default {
     }
 
     const handleClick = () => {
-      return currentStep = 6;
+      return currentStep.value++;
     }
 
     return {
