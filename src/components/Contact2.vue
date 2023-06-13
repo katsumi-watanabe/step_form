@@ -154,7 +154,7 @@ export default {
     }
 
     const handleClick = () => {
-      return currentStep.value++;
+      currentStep.value++;
     }
 
     return {
@@ -169,7 +169,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
