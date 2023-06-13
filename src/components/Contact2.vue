@@ -89,18 +89,18 @@
               class="b-next"
               data-v-fca6c24c=""
               @click="handleClick"
-              v-show="currentStep === 5"
+              :disabled="selectedItems[currentStep - 1].length < 4"
             >
               結果を見る
             </button>
           </div>
       </div>
+      <!-- 結果画面 -->
+      <div v-show="currentStep === 6">
+        <p>ここに結果が表示されます。</p>
+      </div>
     </div>
 
-    <!-- 結果画面 -->
-    <div v-show="currentStep > 5">
-      <p>ここに結果が表示されます。</p>
-    </div>
       <!-- 選択肢外をクリックしたときの処理 -->
     <label class="select-button" style="cursor:pointer;"></label>
     </div>
