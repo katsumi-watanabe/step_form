@@ -95,10 +95,6 @@
             </button>
           </div>
       </div>
-      <!-- 結果画面 -->
-      <div v-show="currentStep === 6">
-        <p>ここに結果が表示されます。</p>
-      </div>
     </div>
 
       <!-- 選択肢外をクリックしたときの処理 -->
@@ -109,6 +105,7 @@
 
 <script>
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import questions from '@/data/questions.json'
 
 export default {
@@ -116,6 +113,11 @@ export default {
     const currentStep = ref(0)
     const currentQuestions = ref([])
     const selectedItems = reactive(Array(5).fill([]))
+    const router = useRouter()
+
+    const handleClick = () => {
+      router.push('/result')
+    }
 
     const showRandomQuestion = () => {
       const questionCounts = 5;
@@ -151,10 +153,6 @@ export default {
         current: currentStep.value === step,
         checked: currentStep.value > step
       }
-    }
-
-    const handleClick = () => {
-      currentStep.value++;
     }
 
     return {

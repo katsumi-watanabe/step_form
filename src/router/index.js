@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Result from '@/views/Result.vue'
+import Result from '@/components/Result.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/result',
     name: 'Result',
     component: Result
   }
