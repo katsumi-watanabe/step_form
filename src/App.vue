@@ -1,14 +1,17 @@
 <template>
-  <Header />
-  <!-- <Contact /> -->
-  <Contact2 />
-  <Footer />
+  <div>
+    <Header />
+    <router-view></router-view> <!-- ルータービューを追加 -->
+    <Footer />
+  </div>
 </template>
+
 
 <script>
 import Header from '@/components/Header.vue'
 import Contact from '@/components/Contact.vue'
 import Contact2 from '@/components/Contact2.vue'
+import Result from '@/components/Result.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
@@ -17,6 +20,7 @@ export default {
     Header,
     Contact,
     Contact2,
+    Result,
     Footer,
   },
 }
