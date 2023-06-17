@@ -115,10 +115,6 @@ export default {
     const selectedItems = reactive(Array(5).fill([]))
     const router = useRouter()
 
-    const handleClick = () => {
-      router.push('/result')
-    }
-
     const showRandomQuestion = () => {
       const questionCounts = 5;
       const shuffledQuestions = questions.slice().sort(() => Math.random() - 0.5);
@@ -153,6 +149,54 @@ export default {
         current: currentStep.value === step,
         checked: currentStep.value > step
       }
+    }
+
+    // 結果画面に進む
+    const handleClick = () => {
+      // 回答データの計算
+      const result = calculateResult(selectedItems)
+
+      // 計算結果に応じて遷移先のページを決定
+      let route = ''
+      if (result === 'A') {
+        route = '/result-a'
+      } else if (result === 'B') {
+        route = '/result-b'
+      } else if (result === 'C') {
+        route = '/result-c'
+      } else {
+        route = '/result-default'
+      }
+
+      // 遷移先のページに遷移
+      router.push(route)
+    }
+
+    // 回答データの計算
+    const calculateResult = (selectedItems) => {
+      // 回答データを格納する配列
+      const result = []
+
+      // 各ステップの回答データをループ
+      for (let i = 0; i < selectedItems.length; i++) {
+        // 回答データを格納する配列
+        const stepResult = []
+
+        // 回答データをループ
+        for (let j = 0; j < selectedItems[i].length; j++) {
+          // 回答データを格納
+          stepResult.push(selectedItems[i][j].answer_pattern)
+        }
+
+        // 回答データを結合して配列に格納
+        result.push(stepResult.join(''))
+      }
+
+      // 回答データを結合して文字列に変換
+      const resultString = result.join('')
+
+      // 計算結果を返す
+      return resultString
     }
 
     return {

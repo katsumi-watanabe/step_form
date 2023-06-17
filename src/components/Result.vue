@@ -2,7 +2,7 @@
     <div class="result-page">
       <div class="result-content">
         <h1 class="result-title">結果画面</h1>
-        <p class="result-message">おめでとうございます！</p>
+        <p class="result-message">ありがとうございます！</p>
         <p class="result-description">素晴らしい結果を受け取りました。</p>
         <router-link to="/" class="cta-button">もう一度診断する！</router-link>
       </div>
