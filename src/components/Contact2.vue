@@ -85,6 +85,7 @@
             class="btn_wrap"
             v-else
           >
+            <button class="b-back" @click="onBack" v-show="currentStep > 1">戻る</button>
             <button
               class="b-next"
               data-v-fca6c24c=""
@@ -164,6 +165,8 @@ export default {
         route = '/result-b'
       } else if (result === 'C') {
         route = '/result-c'
+      } else if (result === 'D') {
+        route = '/result-d'
       } else {
         route = '/result-default'
       }
@@ -194,8 +197,15 @@ export default {
           }
         });
       });
-
       console.log(pointCount);
+
+      // 最も多い回答を返す
+      const maxPoint = Math.max(...Object.values(pointCount));
+      // maxPointが被った場合の優先順位
+      const priority = ['A', 'D', 'C', 'B'];
+      // maxPointが被った場合の優先順位に従って、resultを返す
+      const priorityResult = priority.find((key) => pointCount[key] === maxPoint);
+      return priorityResult ? priorityResult : 'default';
     };
 
     return {
