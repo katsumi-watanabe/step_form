@@ -174,30 +174,29 @@ export default {
 
     // 回答データの計算
     const calculateResult = (selectedItems) => {
-      // 回答データを格納する配列
-      const result = []
+      const pointCount = {
+        A: 0,
+        B: 0,
+        C: 0,
+        D: 0
+      };
 
-      // 各ステップの回答データをループ
-      for (let i = 0; i < selectedItems.length; i++) {
-        // 回答データを格納する配列
-        const stepResult = []
+      selectedItems.forEach((answers) => {
+        answers.forEach((answer, $i) => {
+          if (answer.point_category === 'A') {
+            pointCount['A'] += (4 - $i);
+          } else if (answer.point_category === 'B') {
+            pointCount['B'] += (4 - $i);
+          } else if (answer.point_category === 'C') {
+            pointCount['C'] += (4 - $i);
+          } else if (answer.point_category === 'D') {
+            pointCount['D'] += (4 - $i);
+          }
+        });
+      });
 
-        // 回答データをループ
-        for (let j = 0; j < selectedItems[i].length; j++) {
-          // 回答データを格納
-          stepResult.push(selectedItems[i][j].answer_pattern)
-        }
-
-        // 回答データを結合して配列に格納
-        result.push(stepResult.join(''))
-      }
-
-      // 回答データを結合して文字列に変換
-      const resultString = result.join('')
-
-      // 計算結果を返す
-      return resultString
-    }
+      console.log(pointCount);
+    };
 
     return {
       currentStep,
