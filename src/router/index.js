@@ -9,10 +9,25 @@ const routes = [
     component: Contact2
   },
   {
-    path: '/result-default',
-    name: 'Result',
+    path: '/result-a',
+    name: 'ResultA',
     component: Result
-  }
+  },
+  {
+    path: '/result-b',
+    name: 'ResultB',
+    component: Result
+  },
+  {
+    path: '/result-c',
+    name: 'ResultC',
+    component: Result
+  },
+  {
+    path: '/result-d',
+    name: 'ResultD',
+    component: Result
+  },
 ];
 
 const router = createRouter({

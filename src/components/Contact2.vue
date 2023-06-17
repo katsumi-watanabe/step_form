@@ -172,7 +172,11 @@ export default {
       }
 
       // 遷移先のページに遷移
-      router.push(route)
+      // 結果ページに結果データを渡して遷移
+      router.push({
+        path: route,
+        query: { result: result }
+      });
     }
 
     // 回答データの計算
