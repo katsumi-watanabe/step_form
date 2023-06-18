@@ -283,7 +283,7 @@ export default {
   cursor: pointer;
 }
 .contact-form .select h3{
-  width: 70%;
+  width: 100%;
   border-left: 5px solid #41b883;
   margin: 1rem 0 0 0;
   padding: .5em 0 .5em .5em;
