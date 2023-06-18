@@ -1,7 +1,7 @@
 <template>
   <footer id="footer" class="mt20">
     <div class="container">
-        <p>2021 株式会社◯◯</p>
+        <p>2023 株式会社◯◯</p>
     </div>
   </footer>
 </template>
