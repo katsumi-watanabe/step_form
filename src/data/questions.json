@@ -1,266 +1,442 @@
 [
-    {
-      "id": 1,
-      "question": "質問1",
-      "answer": [
-        {
-          "answer_pattern": "回答1-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答1-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答1-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答1-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "question": "質問2",
-      "answer": [
-        {
-          "answer_pattern": "回答2-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答2-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答2-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答2-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "question": "質問3",
-      "answer": [
-        {
-          "answer_pattern": "回答3-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答3-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答3-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答3-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "question": "質問4",
-      "answer": [
-        {
-          "answer_pattern": "回答4-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答4-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答4-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答4-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "question": "質問5",
-      "answer": [
-        {
-          "answer_pattern": "回答5-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答5-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答5-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答5-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "question": "質問6",
-      "answer": [
-        {
-          "answer_pattern": "回答6-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答6-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答6-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答6-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "question": "質問7",
-      "answer": [
-        {
-          "answer_pattern": "回答7-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答7-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答7-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答7-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "question": "質問8",
-      "answer": [
-        {
-          "answer_pattern": "回答8-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答8-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答8-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答8-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "question": "質問9",
-      "answer": [
-        {
-          "answer_pattern": "回答9-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答9-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答9-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答9-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "question": "質問10",
-      "answer": [
-        {
-          "answer_pattern": "回答10-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答10-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答10-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答10-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "question": "質問11",
-      "answer": [
-        {
-          "answer_pattern": "回答11-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答11-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答11-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答11-4",
-          "point_category": "D"
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "question": "質問12",
-      "answer": [
-        {
-          "answer_pattern": "回答12-1",
-          "point_category": "A"
-        },
-        {
-          "answer_pattern": "回答12-2",
-          "point_category": "B"
-        },
-        {
-          "answer_pattern": "回答12-3",
-          "point_category": "C"
-        },
-        {
-          "answer_pattern": "回答12-4",
-          "point_category": "D"
-        }
-      ]
-    }
+  {
+    "id": 1,
+    "question": "あなたは人と話すことが得意ですか？",
+    "answer": [
+      {
+        "answer_pattern": "とても得意",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "得意",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "苦手",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "とても苦手",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "新しい人との出会いは好きですか？",
+    "answer": [
+      {
+        "answer_pattern": "大好きです",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "好きです",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまり好きではありません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全く好きではありません",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "あなたは公演やプレゼンテーションで話すのが得意ですか？",
+    "answer": [
+      {
+        "answer_pattern": "とても得意です",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "得意です",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "苦手です",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "とても苦手です",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "他の人と話すときに緊張しますか？",
+    "answer": [
+      {
+        "answer_pattern": "まったく緊張しません",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "あまり緊張しません",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "緊張します",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "非常に緊張します",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "あなたはグループディスカッションに参加するのが得意ですか？",
+    "answer": [
+      {
+        "answer_pattern": "非常に得意です",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "得意です",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "苦手です",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "非常に苦手です",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "あなたは人前で話すことが好きですか？",
+    "answer": [
+      {
+        "answer_pattern": "大好きです",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "好きです",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまり好きではありません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全く好きではありません",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "他の人と話すのは楽しいですか？",
+    "answer": [
+      {
+        "answer_pattern": "とても楽しいです",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "楽しいです",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまり楽しくありません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全く楽しくありません",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "あなたはディベートが得意ですか？",
+    "answer": [
+      {
+        "answer_pattern": "とても得意です",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "得意です",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "苦手です",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "とても苦手です",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "question": "あなたはビジネスミーティングで積極的に発言しますか？",
+    "answer": [
+      {
+        "answer_pattern": "積極的に発言します",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "たまに発言します",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまり発言しません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全く発言しません",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "question": "他の人と話すときに集中力を保つことができますか？",
+    "answer": [
+      {
+        "answer_pattern": "非常に集中力を保てます",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "集中力を保てます",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまり集中力を保てません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全く集中力を保てません",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "question": "あなたは会議で自分の意見を主張するのが得意ですか？",
+    "answer": [
+      {
+        "answer_pattern": "とても得意です",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "得意です",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "苦手です",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "とても苦手です",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "question": "あなたは他人との意見の相違に対してオープンマインドですか？",
+    "answer": [
+      {
+        "answer_pattern": "非常にオープンマインドです",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "オープンマインドです",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまりオープンマインドではありません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全くオープンマインドではありません",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "question": "あなたは人との会話でユーモアを交えるのが得意ですか？",
+    "answer": [
+      {
+        "answer_pattern": "とても得意です",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "得意です",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "苦手です",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "とても苦手です",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "question": "あなたは人との会話で相手の感情に敏感ですか？",
+    "answer": [
+      {
+        "answer_pattern": "非常に敏感です",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "敏感です",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまり敏感ではありません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全く敏感ではありません",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "question": "あなたは他の人の意見に耳を傾けるのが得意ですか？",
+    "answer": [
+      {
+        "answer_pattern": "とても得意です",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "得意です",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "苦手です",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "とても苦手です",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "question": "あなたは人との対話で的確な質問をするのが得意ですか？",
+    "answer": [
+      {
+        "answer_pattern": "とても得意です",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "得意です",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "苦手です",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "とても苦手です",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "question": "あなたは他の人との議論が好きですか？",
+    "answer": [
+      {
+        "answer_pattern": "大好きです",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "好きです",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまり好きではありません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全く好きではありません",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "question": "あなたは人とのコミュニケーションでアイコンタクトをしっかりと取りますか？",
+    "answer": [
+      {
+        "answer_pattern": "しっかりとアイコンタクトを取ります",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "たまにアイコンタクトを取ります",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまりアイコンタクトを取りません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全くアイコンタクトを取りません",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "question": "あなたは他の人と話すときに緊張せずに自然体でいられますか？",
+    "answer": [
+      {
+        "answer_pattern": "いつも自然体です",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "比較的自然体です",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまり自然体ではありません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全く自然体ではありません",
+        "point_category": "D"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "question": "あなたは人と話すときに相手の話に集中できますか？",
+    "answer": [
+      {
+        "answer_pattern": "非常に集中できます",
+        "point_category": "A"
+      },
+      {
+        "answer_pattern": "集中できます",
+        "point_category": "B"
+      },
+      {
+        "answer_pattern": "あまり集中できません",
+        "point_category": "C"
+      },
+      {
+        "answer_pattern": "全く集中できません",
+        "point_category": "D"
+      }
+    ]
+  }
 ]

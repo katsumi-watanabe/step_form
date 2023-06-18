@@ -342,7 +342,7 @@ export default {
   display: inline-block;
   background-color: #fff;
   padding: .55em 0;
-  border: 2px solid #ccc;
+  /* border: 2px solid #ccc; */
   text-align: center;
   font-size: 18px;
   cursor: pointer;

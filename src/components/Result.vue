@@ -42,7 +42,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: 70vh;
   background: linear-gradient(to bottom, #41b883, #32a672);
 }
 

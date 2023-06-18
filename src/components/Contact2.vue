@@ -7,7 +7,7 @@
           v-for="step in 5"
           :key="step"
           :class="['num-circle', {'current': currentStep === step, 'checked': currentStep > step}]"
-          v-show="currentStep !== 0 && currentStep < 6"
+          v-show="currentStep > 0 && currentStep < 6"
         >
           <!-- 現在のステップよりも小さい場合はチェックマークを表示、そうでなければステップ番号を表示 -->
           {{ currentStep > step ? '✔︎' : step }}
@@ -25,7 +25,7 @@
       <div
         v-for="(question, index) in currentQuestions"
         :key="question.id"
-        v-show="currentStep === index + 1"
+        v-show="currentStep === (index + 1)"
         data-v-fca6c24c=""
         class="contact-form"
       >
@@ -292,15 +292,10 @@ export default {
 
 .selects {
   margin-top: 0;
-}
-
-.selects .select-button {
-  position: relative;
+  border: 2px solid #ccc;
+  /* 追加: コンテンツを縦方向に中央揃えにする */
+  display: flex;
   align-items: center;
-}
-.selects .select-button.selected[data-v-fca6c24c] {
-  color: #fff;
-  background: #41b883;
 }
 
 .click_number {
@@ -314,9 +309,20 @@ export default {
   color: #0e271c;
   line-height: 1;
   font-weight: bold;
+  /* 修正: 水平方向に中央揃えにする */
   left: 50%;
+  /* 修正: 垂直方向に中央揃えにする */
   top: 50%;
-  transform: translate(-50%, -50%); /* 画面中央に配置するための相対位置指定 */
+  transform: translate(-50%, -50%);
+}
+
+.selects .select-button {
+  position: relative;
+  align-items: center;
+}
+.selects .select-button.selected[data-v-fca6c24c] {
+  color: #fff;
+  background: #41b883;
 }
 
 .grid-container {
