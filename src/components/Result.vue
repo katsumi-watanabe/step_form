@@ -43,6 +43,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 70vh;
+  margin-top: 20px;
   background: linear-gradient(to bottom, #41b883, #32a672);
 }
 
