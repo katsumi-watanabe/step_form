@@ -41,6 +41,7 @@
               v-for="(answer, a) in question.answer"
               :key="a"
               class="selects"
+              :class="{'selected': selectedItems[currentStep - 1].includes(answer)}"
             >
               <label
                 :for="'question' + question.id + '_' + a"
@@ -296,6 +297,9 @@ export default {
   /* 追加: コンテンツを縦方向に中央揃えにする */
   display: flex;
   align-items: center;
+}
+.selects.selected {
+  background-color: #41b883;
 }
 
 .click_number {
