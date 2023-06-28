@@ -1,30 +1,14 @@
 <template>
-        <router-link to="/" class="cta-button">もう一度診断する！</router-link>
+<v-alert text="これはv-alertのコンポーネント"></v-alert>
+<v-color-picker></v-color-picker>
+<v-hover>
+    <template v-slot:default="{ isHovering, props }">
+    <v-card
+        v-bind="props"
+        :color="isHovering ? 'primary' : undefined"
+        title="Hover over me"
+        text="..."
+    ></v-card>
+    </template>
+</v-hover>
 </template>
-
-<script>
-import { useStore } from 'vuex';
-
-export default {
-  setup() {
-    const router = useRouter();
-    const store = useStore();
-    const result = router.currentRoute.value.query.result;
-
-    const getResult = (result) => {
-      return results.find((item) => item.type === result);
-    };
-
-    const resultData = getResult(result);
-    console.log(resultData);
-    store.commit('setResultData', resultData); // Vuexストアに結果データを保存
-
-    return {
-      result: resultData
-    };
-  }
-}
-</script>
-
-<style scoped>
-</style>
