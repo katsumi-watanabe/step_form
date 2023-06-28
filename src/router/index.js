@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Result from '@/components/Result.vue'
 import Contact2 from '@/components/Contact2.vue'
+import Login from '@/components/Login.vue'
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     path: '/result-d',
     name: 'ResultD',
     component: Result
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
 ];
 
