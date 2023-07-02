@@ -385,14 +385,14 @@ textarea{
   padding-top: 1.3rem;
   padding-bottom: 1.3rem;
 }
-.btn_wrap .b-back{
+/* .btn_wrap .b-back{
   height: 40px;
   padding: 0 30px;
   font-size: 16px;
-  font-size: 1.6rem;
+  font-size: 1.0rem;
   line-height: 30px;
   color: #35495e;
-}
+} */
 .btn_wrap .b-disable{
   display: inline;
   background: #e0e6ed;
@@ -412,7 +412,7 @@ textarea{
   border-radius: 14px;
   padding: 0 30px;
   font-size: 16px;
-  font-size: 1.6rem;
+  font-size: 1.0rem;
   line-height: 30px;
   color: #fff;
 }

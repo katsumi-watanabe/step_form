@@ -48,11 +48,11 @@ h3,p{
 }
 h3{
   font-size: 16px;
-  font-size: 1.6rem;
+  font-size: 1.0rem;
 }
 p{
   font-size: 14px;
-  font-size: 1.4rem;
+  font-size: 1.0rem;
 }
 .mt10{ margin-top: 10px; }
 .mt20{ margin-top: 20px; }

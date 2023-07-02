@@ -309,7 +309,7 @@ export default {
   text-align: center;
   border-radius: 50%;
   border: 2px solid #0e271c;
-  font-size: 2.8rem;
+  font-size: 1.8rem;
   color: #0e271c;
   line-height: 1;
   font-weight: bold;
@@ -339,7 +339,7 @@ export default {
   height: 40px;
   padding: 0 30px;
   font-size: 16px;
-  font-size: 1.6rem;
+  font-size: 1.0rem;
   line-height: 30px;
   color: #35495e;
 }
