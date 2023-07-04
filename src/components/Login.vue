@@ -4,7 +4,6 @@
         <v-container fluid class="">
             <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="4">
-                <v-card>
                 <v-card-title class="text-center">
                     <h2 class="text--primary">Login</h2>
                 </v-card-title>
@@ -24,7 +23,6 @@
                     <v-btn color="primary" block type="submit">Login</v-btn>
                     </v-form>
                 </v-card-text>
-                </v-card>
             </v-col>
             </v-row>
         </v-container>

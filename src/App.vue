@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <router-view></router-view> <!-- ルータービューを追加 -->
+    <router-view></router-view>
     <Footer />
   </div>
 </template>
@@ -10,6 +10,7 @@
 <script>
 import Header from '@/components/Header.vue'
 import Contact from '@/components/Contact.vue'
+import Login from '@/components/Login.vue'
 import Contact2 from '@/components/Contact2.vue'
 import Result from '@/components/Result.vue'
 import Footer from '@/components/Footer.vue'
