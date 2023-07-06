@@ -40,10 +40,10 @@
 
         <v-btn
           block
-          class="mb-8"
-          color="blue"
+          class="mb-8 template_color"
           size="large"
           variant="tonal"
+          color="template_color"
         >
           Log In
         </v-btn>

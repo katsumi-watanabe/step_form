@@ -9,13 +9,22 @@ import store from '@/store';
 import '@/assets/base.css'
 // Vuetify
 import 'vuetify/styles'
+
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 const vuetify = createVuetify({
     components,
     directives,
-})
+    theme: {
+      // カスタムカラーの設定
+      themes: {
+        light: {
+          template_color: '#41b883', // お好みのカラーコードに置き換えてください
+        },
+      },
+    },
+  })
 
 const app = createApp(App)
 app.use(vuetify)
