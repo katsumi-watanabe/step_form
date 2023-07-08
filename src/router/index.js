@@ -3,8 +3,14 @@ import Result from '@/components/Result.vue'
 import Contact2 from '@/components/Contact2.vue'
 import Login from '@/components/Login.vue'
 import Signup from '@/components/Signup.vue'
+import Test from '@/components/Test.vue'
 
 const routes = [
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test
+  },
   {
     path: '/',
     name: 'Contact2',

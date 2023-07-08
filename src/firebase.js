@@ -1,5 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -11,9 +12,8 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
-
-
-// firebaseConfigの値を元にfirebaseの初期化
 const app = initializeApp(firebaseConfig);
-// アナリティクスの初期化
-getAnalytics(app);
+const analytics = getAnalytics(app); // アナリティクスの初期化
+const db = getFirestore(app);
+
+export default db;
