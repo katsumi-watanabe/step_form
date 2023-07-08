@@ -1,6 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAnalytics } from 'firebase/analytics';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -13,7 +12,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app); // アナリティクスの初期化
-const db = getFirestore(app);
+const auth = getAuth(app);
 
-export default db;
+export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword };

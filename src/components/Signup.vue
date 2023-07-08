@@ -1,71 +1,102 @@
 <template>
   <div class="mt-5">
     <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
-      <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+      <form @submit.prevent="signUp">
+        <div class="text-subtitle-1 text-medium-emphasis">アカウント</div>
 
-      <v-text-field
-        density="compact"
-        placeholder="Email address"
-        prepend-inner-icon="mdi-email-outline"
-        variant="outlined"
-      ></v-text-field>
+        <v-text-field
+          density="compact"
+          placeholder="メールアドレス"
+          prepend-inner-icon="mdi-email-outline"
+          variant="outlined"
+          v-model="email"
+        ></v-text-field>
 
-      <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-        Password
-      </div>
+        <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
+          パスワード
+        </div>
 
-      <v-text-field
-        :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-        :type="visible ? 'text' : 'password'"
-        density="compact"
-        placeholder="Enter your password"
-        prepend-inner-icon="mdi-lock-outline"
-        variant="outlined"
-        @click:append-inner="visible = !visible"
-      ></v-text-field>
+        <v-text-field
+          :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+          :type="visible ? 'text' : 'password'"
+          density="compact"
+          placeholder="パスワードを入力"
+          prepend-inner-icon="mdi-lock-outline"
+          variant="outlined"
+          v-model="password"
+        ></v-text-field>
 
-      <v-btn
-        block
-        class="mb-8 template_color"
-        size="large"
-        variant="tonal"
-      >
-        Signup
-      </v-btn>
+        <v-alert
+          v-if="errorMessage"
+          dense
+          outlined
+          type="error"
+          class="mb-4"
+        >
+          {{ errorMessage }}
+        </v-alert>
 
+        <v-btn
+          block
+          class="mb-8 template_color"
+          size="large"
+          variant="tonal"
+          type="submit"
+        >
+          登録する
+        </v-btn>
+      </form>
     </v-card>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "vue-router";
+import { ref } from "vue";
 
 export default {
-  data() {
-    return {
-      email: '',
-      username: '',
-      visible: false // 追加: パスワード表示トグルのための変数
-    };
-  },
   setup() {
-    const login = () => {
-      // ログインの処理を記述する
-      // 例えば、APIリクエストを送信してバックエンドとの認証を行うなど
+    const email = ref("");
+    const password = ref("");
+    const visible = ref(false);
+    const errorMessage = ref("");
+    const auth = getAuth();
+    const router = useRouter();
+
+    const signUp = () => {
+      createUserWithEmailAndPassword(auth, email.value, password.value)
+        .then(() => {
+          signInWithEmailAndPassword(auth, email.value, password.value)
+            .then(() => {
+              router.push("/");
+            })
+            .catch((error) => {
+              errorMessage.value = "サインインエラー：" + error.message;
+            });
+        })
+        .catch((error) => {
+          errorMessage.value = "サインアップエラー：" + error.message;
+        });
     };
+
     return {
-      login
+      email,
+      password,
+      visible,
+      errorMessage,
+      signUp
     };
   }
 };
 </script>
+
 <style scoped>
-.template_color{
+.template_color {
   background-color: #41b883;
   color: #fff;
 }
-.template_color_text{
+.template_color_text {
   color: #41b883;
 }
-
 </style>
