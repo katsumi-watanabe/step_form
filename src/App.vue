@@ -58,6 +58,11 @@ p{
   font-size: 14px;
   font-size: 1.0rem;
 }
+.template_color{
+  background-color: #41b883;
+  color: #fff;
+}
+
 .mt10{ margin-top: 10px; }
 .mt20{ margin-top: 20px; }
 @media (min-width: 960px) {

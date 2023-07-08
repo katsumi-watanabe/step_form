@@ -16,14 +16,6 @@ import * as directives from 'vuetify/directives'
 const vuetify = createVuetify({
     components,
     directives,
-    theme: {
-      // カスタムカラーの設定
-      themes: {
-        light: {
-          template_color: '#41b883', // お好みのカラーコードに置き換えてください
-        },
-      },
-    },
   })
 
 const app = createApp(App)
