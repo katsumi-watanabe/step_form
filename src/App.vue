@@ -64,7 +64,7 @@ button.template_color {
 button.template_color span {
   color: #fff;
 }
-a.template_color_text {
+.template_color_text {
   color: #41b883;
 }
 
