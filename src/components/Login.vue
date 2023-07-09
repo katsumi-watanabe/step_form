@@ -1,83 +1,96 @@
 <template>
-    <div class="mt-5">
+  <div class="mt-5">
 
-      <v-card
-        class="mx-auto pa-12 pb-8"
-        elevation="8"
-        max-width="448"
-        rounded="lg"
-      >
-        <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+    <v-card
+      class="mx-auto pa-12 pb-8"
+      elevation="8"
+      max-width="448"
+      rounded="lg"
+    >
+      <div class="text-subtitle-1 text-medium-emphasis">アカウント</div>
 
-        <v-text-field
-          density="compact"
-          placeholder="Email address"
-          prepend-inner-icon="mdi-email-outline"
-          variant="outlined"
-        ></v-text-field>
+      <v-text-field
+        density="compact"
+        placeholder="メールアドレス"
+        prepend-inner-icon="mdi-email-outline"
+        variant="outlined"
+      ></v-text-field>
 
-        <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-          Password
+      <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
+        パスワード
 
-          <a
-            class="text-caption text-decoration-none text-blue"
-            href="#"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Forgot login password?</a>
-        </div>
-
-        <v-text-field
-          :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-          :type="visible ? 'text' : 'password'"
-          density="compact"
-          placeholder="Enter your password"
-          prepend-inner-icon="mdi-lock-outline"
-          variant="outlined"
-          @click:append-inner="visible = !visible"
-        ></v-text-field>
-
-        <v-btn
-          block
-          class="mb-8"
-          color="blue"
-          size="large"
-          variant="tonal"
+        <a
+          class="text-caption text-decoration-none template_color_text"
+          href="#"
+          rel="noopener noreferrer"
+          target="_blank"
         >
-          Log In
-        </v-btn>
+          ログインパスワードをお忘れですか？</a>
+      </div>
 
-        <v-card-text class="text-center">
-          <a
-            class="text-blue text-decoration-none"
-            href="/signup"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
-          </a>
-        </v-card-text>
-      </v-card>
-    </div>
-  </template>
+      <v-text-field
+        :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+        :type="visible ? 'text' : 'password'"
+        density="compact"
+        placeholder="パスワードを入力してください"
+        prepend-inner-icon="mdi-lock-outline"
+        variant="outlined"
+        @click:append-inner="visible = !visible"
+      ></v-text-field>
+
+      <v-btn
+        block
+        class="mb-8 template_color"
+        color="blue"
+        size="large"
+        variant="tonal"
+      >
+        ログイン
+      </v-btn>
+
+      <v-card-text class="text-center">
+        <a
+          class="template_color_text text-decoration-none"
+          href="/signup"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          今すぐサインアップ <v-icon icon="mdi-chevron-right"></v-icon>
+        </a>
+      </v-card-text>
+    </v-card>
+  </div>
+</template>
+
 <script>
 import { ref } from 'vue';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useRoute } from 'vue-router';
+
 export default {
-data() {
-    return {
-    email: '',
-    username: ''
-    };
-},
-setup() {
+  setup() {
+    const email = ref('');
+    const password = ref('');
+    const visible = ref(false);
+    const router = useRoute();
+
     const login = () => {
-    // ログインの処理を記述する
-    // 例えば、APIリクエストを送信してバックエンドとの認証を行うなど
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, email.value, password.value)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          router.push('/')
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+        });
     };
     return {
-    login
+      email,
+      password,
+      visible,
+      login,
     };
-}
-}
+  },
+};
 </script>

@@ -57,9 +57,15 @@ p{
   font-size: 14px;
   font-size: 1.0rem;
 }
-.template_color{
+button.template_color {
   background-color: #41b883;
   color: #fff;
+}
+button.template_color span {
+  color: #fff;
+}
+a.template_color_text {
+  color: #41b883;
 }
 
 .mt10{ margin-top: 10px; }

@@ -90,13 +90,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.template_color {
-  background-color: #41b883;
-  color: #fff;
-}
-.template_color_text {
-  color: #41b883;
-}
-</style>
