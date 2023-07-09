@@ -14,6 +14,7 @@
         placeholder="メールアドレス"
         prepend-inner-icon="mdi-email-outline"
         variant="outlined"
+        v-model="email"
       ></v-text-field>
 
       <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
@@ -35,15 +36,26 @@
         placeholder="パスワードを入力してください"
         prepend-inner-icon="mdi-lock-outline"
         variant="outlined"
+        v-model="password"
         @click:append-inner="visible = !visible"
       ></v-text-field>
 
+      <v-alert
+        v-if="errorMessage"
+        dense
+        outlined
+        type="error"
+        class="mb-4"
+      >
+      {{ errorMessage }}
+      </v-alert>
       <v-btn
         block
         class="mb-8 template_color"
         color="blue"
         size="large"
         variant="tonal"
+        @click="login"
       >
         ログイン
       </v-btn>
@@ -65,30 +77,37 @@
 <script>
 import { ref } from 'vue';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 export default {
   setup() {
     const email = ref('');
     const password = ref('');
     const visible = ref(false);
-    const router = useRoute();
+    const router = useRouter();
+    const errorMessage = ref('');
+    const isAuthenticated = ref(false);
+
+    const auth = getAuth();
 
     const login = () => {
-      const auth = getAuth();
       signInWithEmailAndPassword(auth, email.value, password.value)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          router.push('/')
+      .then((userCredential) => {
+        const user = userCredential.user;
+        isAuthenticated.value = true; // ログイン成功時にフラグをtrueにする
+        router.push("/")
         })
         .catch((error) => {
-          const errorCode = error.code;
+          console.log('失敗', error);
+          errorMessage.value = "ログインエラー" + error.code;
         });
     };
     return {
       email,
       password,
       visible,
+      errorMessage,
+      isAuthenticated,
       login,
     };
   },

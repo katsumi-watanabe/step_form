@@ -106,16 +106,24 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import questions from '@/data/questions.json'
+import { getAuth } from 'firebase/auth'
 
 export default {
   setup() {
+    const auth = getAuth();
+    const currentUser = ref(null);
     const currentStep = ref(0)
     const currentQuestions = ref([])
     const selectedItems = reactive(Array(5).fill([]))
     const router = useRouter()
+
+    // ユーザー情報の取得
+    onMounted(() => {
+      currentUser.value = auth.currentUser;
+    });
 
     const showRandomQuestion = () => {
       const questionCounts = 5;
@@ -214,6 +222,7 @@ export default {
     };
 
     return {
+      currentUser,
       currentStep,
       currentQuestions,
       selectedItems,
