@@ -10,7 +10,6 @@
           <router-link to="/" tag="button" class="button-link">
             診断ページへ
           </router-link>
-
         </div>
       </div>
     </div>
@@ -18,20 +17,32 @@
 </template>
 
 <script>
-import { reactive, onMounted, onBeforeUnmount } from 'vue';
+import firebase from 'firebase/app';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-export default {
-  name: 'Header',
-  setup() {
-    const router = useRouter();
-    const state = reactive({
-      isLoggedIn: false,
-    });
+const auth = getAuth();
+const isLoggedIn = ref(false);
+const router = useRouter();
 
+onAuthStateChanged(auth, (user) => {
+  console.log(user);
+  if (user) {
+    const uid = user.uid;
+    isLoggedIn.value = true;
+  } else {
+    // User is signed out
+    isLoggedIn.value = false;
+    // ...
+  }
+});
+
+export default {
+  setup() {
     const login = () => {
       // ログイン処理を実装する必要があります
-      state.isLoggedIn = true; // ログイン成功した場合にtrueに設定する例
+      isLoggedIn.value = true; // ログイン成功した場合にtrueに設定する例
       router.push('/login'); // ログイン後にリダイレクトする例
     };
 
@@ -41,12 +52,21 @@ export default {
 
     const logout = () => {
       // ログアウト処理を実装する必要があります
-      state.isLoggedIn = false; // ログアウト成功した場合にfalseに設定する例
-      router.push('/login'); // ログアウト後にリダイレクトする例
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          // ログイン画面に遷移
+          isLoggedIn.value = false;
+          router.push('/login');
+        })
+        .catch(() => {
+          alert('ログアウト失敗');
+        });
     };
 
     return {
-      isLoggedIn: state.isLoggedIn,
+      isLoggedIn,
       login,
       signup,
       logout,
