@@ -22,17 +22,18 @@ const vuetify = createVuetify({
 const app = createApp(App)
 
 // Firebaseの初期化
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 const auth = getAuth();
 let isAuthenticated = false;
 
 // ログイン状態の監視
-import { onAuthStateChanged } from 'firebase/auth';
 onAuthStateChanged(auth, (user) => {
   isAuthenticated = !!user;
+  // console.log(isAuthenticated);
 });
 
 app.use(vuetify)
 app.use(router)
 app.use(store);
+app.provide('isAuthenticated', isAuthenticated);
 app.mount('#app')

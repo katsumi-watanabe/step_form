@@ -7,9 +7,6 @@
         <div v-else>
           <button @click="login" class="login-button">ログイン</button>
           <button @click="signup" class="signup-button">サインアップ</button>
-          <router-link to="/" tag="button" class="button-link">
-            診断ページへ
-          </router-link>
         </div>
       </div>
     </div>
@@ -17,10 +14,9 @@
 </template>
 
 <script>
-import firebase from 'firebase/app';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { ref, inject } from "vue";
+import { useRouter } from "vue-router";
 
 const auth = getAuth();
 const isLoggedIn = ref(false);
@@ -40,9 +36,12 @@ onAuthStateChanged(auth, (user) => {
 
 export default {
   setup() {
+    const isAuthenticated = inject('isAuthenticated');
+    console.log(isAuthenticated);
+    
     const login = () => {
       // ログイン処理を実装する必要があります
-      isLoggedIn.value = true; // ログイン成功した場合にtrueに設定する例
+      state.isLoggedIn = true; // ログイン成功した場合にtrueに設定する例
       router.push('/login'); // ログイン後にリダイレクトする例
     };
 
@@ -52,16 +51,16 @@ export default {
 
     const logout = () => {
       // ログアウト処理を実装する必要があります
-      firebase
-        .auth()
-        .signOut()
+      const auth = getAuth();
+      signOut(auth)
         .then(() => {
-          // ログイン画面に遷移
-          isLoggedIn.value = false;
-          router.push('/login');
+          // ログアウト成功時の処理
+          router.push({ path: '/login' });
         })
-        .catch(() => {
+        .catch((error) => {
+          // ログアウト失敗時の処理
           alert('ログアウト失敗');
+          console.error(error);
         });
     };
 
@@ -71,7 +70,7 @@ export default {
       signup,
       logout,
     };
-  },
+  }
 };
 </script>
 
