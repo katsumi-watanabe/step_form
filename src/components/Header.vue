@@ -4,18 +4,17 @@
       <h1><img src="@/assets/logo.svg" alt="logo" class="logo"></h1>
       <div class="button-container">
         <button v-if="isLoggedIn" @click="logout" class="logout-button">ログアウト</button>
-        <div v-else>
-          <button @click="login" class="login-button">ログイン</button>
-          <button @click="signup" class="signup-button">サインアップ</button>
-        </div>
+        <button v-else @click="login" class="login-button">ログイン</button>
+        <button v-else @click="signup" class="signup-button">サインアップ</button>
       </div>
     </div>
   </header>
 </template>
 
+
 <script>
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { ref, inject } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const auth = getAuth();
@@ -36,9 +35,6 @@ onAuthStateChanged(auth, (user) => {
 
 export default {
   setup() {
-    const isAuthenticated = inject('isAuthenticated');
-    console.log(isAuthenticated);
-    
     const login = () => {
       // ログイン処理を実装する必要があります
       state.isLoggedIn = true; // ログイン成功した場合にtrueに設定する例
@@ -60,7 +56,6 @@ export default {
         .catch((error) => {
           // ログアウト失敗時の処理
           alert('ログアウト失敗');
-          console.error(error);
         });
     };
 
