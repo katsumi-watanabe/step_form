@@ -56,11 +56,12 @@ const router = createRouter({
 
 // ログイン状態を取得するコード
 const auth = getAuth();
-let isAuthenticated = false;
+let isAuthenticated = null; // 初期値を null に設定
 
 onAuthStateChanged(auth, (user) => {
   isAuthenticated = !!user; // ユーザーオブジェクトが存在するかどうかでログイン状態を判断
 });
+
 
 // ナビゲーションガードを追加
 router.beforeEach((to, from, next) => {
