@@ -61,7 +61,6 @@ let isAuthenticated = null; // 初期値を null に設定
 onAuthStateChanged(auth, (user) => {
   isAuthenticated = !!user; // ユーザーオブジェクトが存在するかどうかでログイン状態を判断
 
-  console.log(isAuthenticated, router.currentRoute.value.path);
   // ログインしている場合はルートパスを'/'に設定
   if (isAuthenticated) {
     router.push('/');
@@ -72,10 +71,26 @@ onAuthStateChanged(auth, (user) => {
 router.beforeEach((to, from, next) => {
   // ログイン状態に応じて適切な処理を行う
 
-  if (!isAuthenticated && to.name !== 'Login' && to.name !== 'Signup') {
-    next({ name: 'Login' });
+  if (isAuthenticated === null) {
+    // ログイン状態が未確定の場合は待機
+    onAuthStateChanged(auth, (user) => {
+      isAuthenticated = !!user;
+      if (isAuthenticated) {
+        next();
+      } else {
+        redirectToLogin();
+      }
+    });
+  } else if (!isAuthenticated && to.name !== 'Login' && to.name !== 'Signup') {
+    // ログインしていない場合はログインページにリダイレクト
+    redirectToLogin();
   } else {
     next();
   }
+
+  function redirectToLogin() {
+    next({ name: 'Login' });
+  }
 });
+
 export default router;

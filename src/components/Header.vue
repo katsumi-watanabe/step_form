@@ -1,7 +1,11 @@
 <template>
   <header>
     <div class="container">
-      <h1><img src="@/assets/logo.svg" alt="logo" class="logo"></h1>
+      <h1>
+        <a href="/">
+          <img src="@/assets/logo.svg" alt="logo" class="logo">
+        </a>
+      </h1>
       <div class="button-container">
         <button v-if="isLoggedIn !== null && isLoggedIn" @click="logout" class="logout-button">ログアウト</button>
         <button v-else-if="isLoggedIn !== null && !isLoginPage" @click="login" class="login-button">ログイン</button>
