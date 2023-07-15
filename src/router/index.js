@@ -60,8 +60,13 @@ let isAuthenticated = null; // 初期値を null に設定
 
 onAuthStateChanged(auth, (user) => {
   isAuthenticated = !!user; // ユーザーオブジェクトが存在するかどうかでログイン状態を判断
-});
 
+  console.log(isAuthenticated, router.currentRoute.value.path);
+  // ログインしている場合はルートパスを'/'に設定
+  if (isAuthenticated) {
+    router.push('/');
+  }
+});
 
 // ナビゲーションガードを追加
 router.beforeEach((to, from, next) => {
