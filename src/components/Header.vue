@@ -7,6 +7,7 @@
         </a>
       </h1>
       <div class="button-container">
+        <button v-if="isLoggedIn !== null && isLoggedIn" @click="userInfo" class="logout-button">ユーザー情報</button>
         <button v-if="isLoggedIn !== null && isLoggedIn" @click="logout" class="logout-button">ログアウト</button>
         <button v-else-if="isLoggedIn !== null && !isLoginPage" @click="login" class="login-button">ログイン</button>
         <button v-else-if="isLoggedIn !== null && isLoginPage" @click="signup" class="signup-button">サインアップ</button>
@@ -51,11 +52,16 @@ export default {
         });
     };
 
+    const userInfo = () => {
+      router.push('/history-graph');
+    };
+
     return {
       isLoggedIn,
       isLoginPage,
       login,
       signup,
+      userInfo,
       logout,
     };
   },
