@@ -4,6 +4,7 @@ import Contact2 from '@/components/Contact2.vue'
 import Login from '@/components/Login.vue'
 import Signup from '@/components/Signup.vue'
 import Test from '@/components/Test.vue'
+import HistoryGraph from '@/components/HistoryGraph.vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const routes = [
@@ -46,6 +47,11 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: Signup
+  },
+  {
+    path: '/history-graph',
+    name: 'HistoryGraph',
+    component: HistoryGraph
   },
 ];
 
