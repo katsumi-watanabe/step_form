@@ -31,8 +31,6 @@ export default {
       isLoggedIn.value = !!user;
     });
 
-    console.log(isLoggedIn);
-
     const isLoginPage = computed(() => router.currentRoute.value.path === '/login');
     const login = () => {
       router.push('/login');

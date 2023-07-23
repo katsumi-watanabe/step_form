@@ -122,7 +122,14 @@ export default {
 
     // ユーザー情報の取得
     onMounted(() => {
+      // ユーザー情報の取得
       currentUser.value = auth.currentUser;
+
+      // ページが再度読み込まれたときに値を復元します。
+      const savedStep = JSON.parse(localStorage.getItem('currentStep'))
+      if (savedStep) {
+        currentStep.value = savedStep
+      }
     });
 
     const showRandomQuestion = () => {
@@ -146,10 +153,16 @@ export default {
       }
 
       currentStep.value++
+
+      // currentStepの値をlocalStorageに保存します。
+      localStorage.setItem('currentStep', JSON.stringify(currentStep.value))
     }
 
     const onBack = () => {
       currentStep.value--
+
+      // currentStepの値をlocalStorageに保存します。
+      localStorage.setItem('currentStep', JSON.stringify(currentStep.value))
     }
 
     const getStepClass = (step) => {

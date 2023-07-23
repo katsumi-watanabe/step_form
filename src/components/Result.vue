@@ -27,7 +27,6 @@ export default {
     };
 
     const resultData = getResult(result);
-    console.log(resultData);
     store.commit('setResultData', resultData); // Vuexストアに結果データを保存
 
     return {
