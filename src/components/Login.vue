@@ -20,14 +20,14 @@
         <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
           パスワード
 
-          <a
+          <!-- <a
             class="text-caption text-decoration-none template_color_text"
             href="#"
             rel="noopener noreferrer"
             target="_blank"
           >
             ログインパスワードをお忘れですか？
-          </a>
+          </a> -->
         </div>
 
         <v-text-field
