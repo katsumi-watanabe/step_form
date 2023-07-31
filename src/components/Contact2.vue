@@ -166,9 +166,17 @@ export default {
     }
 
     // 結果画面に進む
-    const handleClick = () => {
+    const handleClick = async () => {
       // 回答データの計算
-      const result = calculateResult(selectedItems)
+      const result = calculateResult(selectedItems);
+
+      // Firebase Firestoreに保存する
+      const db = getFirestore();
+      const docRef = doc(db, "answers", currentUser.value.uid); // "answers"はコレクション名、currentUser.value.uidはドキュメントID（ここではユーザーのIDを使用）
+      await setDoc(docRef, {
+        answers: selectedItems,
+        result: result,
+      }, { merge: true }); // データを統合（マージ）します。既存のドキュメントが存在しない場合は新たに作成します。
 
       // 計算結果に応じて遷移先のページを決定
       let route = ''
@@ -214,7 +222,6 @@ export default {
           }
         });
       });
-      console.log(pointCount);
 
       // 最も多い回答を返す
       const maxPoint = Math.max(...Object.values(pointCount));
