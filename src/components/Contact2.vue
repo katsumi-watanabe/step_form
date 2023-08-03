@@ -167,37 +167,41 @@ export default {
 
     // 結果画面に進む
     const handleClick = async () => {
-      // 回答データの計算
-      const result = calculateResult(selectedItems);
+      try {
+        // 回答データの計算
+        const result = calculateResult(selectedItems);
 
-      // Firebase Firestoreに保存する
-      const db = getFirestore();
-      const docRef = doc(db, "answers", currentUser.value.uid); // "answers"はコレクション名、currentUser.value.uidはドキュメントID（ここではユーザーのIDを使用）
-      await setDoc(docRef, {
-        answers: selectedItems,
-        result: result,
-      }, { merge: true }); // データを統合（マージ）します。既存のドキュメントが存在しない場合は新たに作成します。
+        // Firebase Firestoreに保存する
+        const db = getFirestore();
+        const docRef = doc(db, "answers", currentUser.value.uid); // "answers"はコレクション名、currentUser.value.uidはドキュメントID（ここではユーザーのIDを使用）
+        await setDoc(docRef, {
+          answers: selectedItems,
+          result: result,
+        }, { merge: true }); // データを統合（マージ）します。既存のドキュメントが存在しない場合は新たに作成します。
 
-      // 計算結果に応じて遷移先のページを決定
-      let route = ''
-      if (result === 'A') {
-        route = '/result-a'
-      } else if (result === 'B') {
-        route = '/result-b'
-      } else if (result === 'C') {
-        route = '/result-c'
-      } else if (result === 'D') {
-        route = '/result-d'
-      } else {
-        route = '/result-default'
+        // 計算結果に応じて遷移先のページを決定
+        let route = ''
+        if (result === 'A') {
+          route = '/result-a'
+        } else if (result === 'B') {
+          route = '/result-b'
+        } else if (result === 'C') {
+          route = '/result-c'
+        } else if (result === 'D') {
+          route = '/result-d'
+        } else {
+          route = '/result-default'
+        }
+
+        // 遷移先のページに遷移
+        // 結果ページに結果データを渡して遷移
+        router.push({
+          path: route,
+          query: { result: result }
+        });
+      } catch (err) {
+        console.error(err); // エラーメッセージを表示
       }
-
-      // 遷移先のページに遷移
-      // 結果ページに結果データを渡して遷移
-      router.push({
-        path: route,
-        query: { result: result }
-      });
     }
 
     // 回答データの計算
