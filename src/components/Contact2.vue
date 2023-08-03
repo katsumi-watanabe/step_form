@@ -110,6 +110,7 @@ import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import questions from '@/data/questions.json'
 import { getAuth } from 'firebase/auth'
+import { getFirestore, doc, setDoc } from 'firebase/firestore'
 
 export default {
   setup() {
@@ -174,8 +175,15 @@ export default {
         // Firebase Firestoreに保存する
         const db = getFirestore();
         const docRef = doc(db, "answers", currentUser.value.uid); // "answers"はコレクション名、currentUser.value.uidはドキュメントID（ここではユーザーのIDを使用）
+
+        // selectedItemsをフラットなオブジェクトに変換する
+        const flatSelectedItems = selectedItems.reduce((acc, current, index) => {
+          acc['answer' + (index + 1)] = current;
+          return acc;
+        }, {});
+
         await setDoc(docRef, {
-          answers: selectedItems,
+          answers: flatSelectedItems,
           result: result,
         }, { merge: true }); // データを統合（マージ）します。既存のドキュメントが存在しない場合は新たに作成します。
 
