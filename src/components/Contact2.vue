@@ -110,7 +110,7 @@ import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import questions from '@/data/questions.json'
 import { getAuth } from 'firebase/auth'
-import { getFirestore, doc, setDoc } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, collection } from "firebase/firestore"
 
 export default {
   setup() {
@@ -172,9 +172,11 @@ export default {
         // 回答データの計算
         const result = calculateResult(selectedItems);
 
-        // Firebase Firestoreに保存する
+        // Firestoreに回答を保存する
         const db = getFirestore();
-        const docRef = doc(db, "answers", currentUser.value.uid); // "answers"はコレクション名、currentUser.value.uidはドキュメントID（ここではユーザーのIDを使用）
+
+        // 各回答に一意のIDを割り当てる
+        const docRef = doc(collection(db, "answers"));
 
         // selectedItemsをフラットなオブジェクトに変換する
         const flatSelectedItems = selectedItems.reduce((acc, current, index) => {
@@ -182,10 +184,12 @@ export default {
           return acc;
         }, {});
 
+        // ドキュメントに回答とユーザーID、結果を保存する
         await setDoc(docRef, {
+          uid: currentUser.value.uid,
           answers: flatSelectedItems,
           result: result,
-        }, { merge: true }); // データを統合（マージ）します。既存のドキュメントが存在しない場合は新たに作成します。
+        });
 
         // 計算結果に応じて遷移先のページを決定
         let route = ''
