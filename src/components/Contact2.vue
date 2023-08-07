@@ -170,7 +170,10 @@ export default {
     const handleClick = async () => {
       try {
         // 回答データの計算
+        const calculatedData = calculateResult(selectedItems);
         const result = calculateResult(selectedItems);
+        const pointCount = calculatedData.pointCount;
+
 
         // Firestoreに回答を保存する
         const db = getFirestore();
@@ -189,6 +192,7 @@ export default {
           uid: currentUser.value.uid,
           answers: flatSelectedItems,
           result: result,
+          typePoints: pointCount,
         });
 
         // 計算結果に応じて遷移先のページを決定
@@ -245,7 +249,10 @@ export default {
       const priority = ['A', 'D', 'C', 'B'];
       // maxPointが被った場合の優先順位に従って、resultを返す
       const priorityResult = priority.find((key) => pointCount[key] === maxPoint);
-      return priorityResult ? priorityResult : 'default';
+      return {
+        result: priorityResult ? priorityResult : 'default',
+        pointCount: pointCount
+      };
     };
 
     return {
