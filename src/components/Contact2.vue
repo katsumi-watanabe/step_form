@@ -231,18 +231,11 @@ export default {
 
       selectedItems.forEach((answers) => {
         answers.forEach((answer, $i) => {
-          if (answer.point_category === 'A') {
-            pointCount['A'] += (4 - $i);
-          } else if (answer.point_category === 'B') {
-            pointCount['B'] += (4 - $i);
-          } else if (answer.point_category === 'C') {
-            pointCount['C'] += (4 - $i);
-          } else if (answer.point_category === 'D') {
-            pointCount['D'] += (4 - $i);
-          }
+            if (['A', 'B', 'C', 'D'].includes(answer.point_category)) {
+                pointCount[answer.point_category] += (4 - $i);
+            }
         });
-      });
-
+    });
       // 最も多い回答を返す
       const maxPoint = Math.max(...Object.values(pointCount));
       // maxPointが被った場合の優先順位
