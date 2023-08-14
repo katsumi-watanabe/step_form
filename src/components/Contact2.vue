@@ -52,7 +52,7 @@
                 <!-- 回答パターン -->
                 {{ answer.answer_pattern }}
                 <!-- 選択された回答の番号 -->
-                <span class="click_number" v-if="(selectedItems[currentStep - 1].indexOf(answer) + 1) > 0">
+                <span class="click_number" v-if="selectedItems[currentStep - 1] && Array.isArray(selectedItems[currentStep - 1]) && (selectedItems[currentStep - 1].indexOf(answer) + 1) > 0">
                   {{ selectedItems[currentStep - 1].indexOf(answer) + 1 }}
                 </span>
               </label>
@@ -118,7 +118,7 @@ export default {
     const currentUser = ref(null);
     const currentStep = ref(0)
     const currentQuestions = ref([])
-    const selectedItems = reactive(Array(5).fill([]))
+    const selectedItems = reactive(Array.from({ length: 5 }, () => []))
     const router = useRouter()
 
     // ユーザー情報の取得
@@ -174,7 +174,6 @@ export default {
         const result = calculateResult(selectedItems);
         const pointCount = calculatedData.pointCount;
 
-
         // Firestoreに回答を保存する
         const db = getFirestore();
 
@@ -197,17 +196,14 @@ export default {
 
         // 計算結果に応じて遷移先のページを決定
         let route = ''
-        if (result === 'A') {
-          route = '/result-a'
-        } else if (result === 'B') {
-          route = '/result-b'
-        } else if (result === 'C') {
-          route = '/result-c'
-        } else if (result === 'D') {
-          route = '/result-d'
-        } else {
-          route = '/result-default'
+        const resultRoutes = {
+          'A': '/result-a',
+          'B': '/result-b',
+          'C': '/result-c',
+          'D': '/result-d',
         }
+
+        route = resultRoutes[result]
 
         // 遷移先のページに遷移
         // 結果ページに結果データを渡して遷移
@@ -243,9 +239,10 @@ export default {
       // maxPointが被った場合の優先順位に従って、resultを返す
       const priorityResult = priority.find((key) => pointCount[key] === maxPoint);
       return {
-        result: priorityResult ? priorityResult : 'default',
+        result: priorityResult, // defaultの代わりに priorityResult を直接返す
         pointCount: pointCount
       };
+
     };
 
     return {
