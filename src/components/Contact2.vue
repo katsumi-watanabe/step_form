@@ -52,7 +52,7 @@
                 <!-- 回答パターン -->
                 {{ answer.answer_pattern }}
                 <!-- 選択された回答の番号 -->
-                <span class="click_number" v-if="selectedItems[currentStep - 1] && Array.isArray(selectedItems[currentStep - 1]) && (selectedItems[currentStep - 1].indexOf(answer) + 1) > 0">
+                <span class="click_number" v-if="(selectedItems[currentStep - 1].indexOf(answer) + 1) > 0">
                   {{ selectedItems[currentStep - 1].indexOf(answer) + 1 }}
                 </span>
               </label>
@@ -110,7 +110,7 @@ import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import questions from '@/data/questions.json'
 import { getAuth } from 'firebase/auth'
-import { getFirestore, doc, setDoc, collection } from "firebase/firestore"
+import { getFirestore, doc, setDoc } from 'firebase/firestore'
 
 export default {
   setup() {
@@ -118,7 +118,7 @@ export default {
     const currentUser = ref(null);
     const currentStep = ref(0)
     const currentQuestions = ref([])
-    const selectedItems = reactive(Array.from({ length: 5 }, () => []))
+    const selectedItems = reactive(Array(5).fill([]))
     const router = useRouter()
 
     // ユーザー情報の取得
@@ -170,15 +170,11 @@ export default {
     const handleClick = async () => {
       try {
         // 回答データの計算
-        const calculatedData = calculateResult(selectedItems);
         const result = calculateResult(selectedItems);
-        const pointCount = calculatedData.pointCount;
 
-        // Firestoreに回答を保存する
+        // Firebase Firestoreに保存する
         const db = getFirestore();
-
-        // 各回答に一意のIDを割り当てる
-        const docRef = doc(collection(db, "answers"));
+        const docRef = doc(db, "answers", currentUser.value.uid);
 
         // selectedItemsをフラットなオブジェクトに変換する
         const flatSelectedItems = selectedItems.reduce((acc, current, index) => {
@@ -186,24 +182,24 @@ export default {
           return acc;
         }, {});
 
-        // ドキュメントに回答とユーザーID、結果を保存する
         await setDoc(docRef, {
-          uid: currentUser.value.uid,
           answers: flatSelectedItems,
           result: result,
-          typePoints: pointCount,
-        });
+        }, { merge: true });
 
         // 計算結果に応じて遷移先のページを決定
         let route = ''
-        const resultRoutes = {
-          'A': '/result-a',
-          'B': '/result-b',
-          'C': '/result-c',
-          'D': '/result-d',
+        if (result === 'A') {
+          route = '/result-a'
+        } else if (result === 'B') {
+          route = '/result-b'
+        } else if (result === 'C') {
+          route = '/result-c'
+        } else if (result === 'D') {
+          route = '/result-d'
+        } else {
+          route = '/result-default'
         }
-
-        route = resultRoutes[result]
 
         // 遷移先のページに遷移
         // 結果ページに結果データを渡して遷移
@@ -227,22 +223,25 @@ export default {
 
       selectedItems.forEach((answers) => {
         answers.forEach((answer, $i) => {
-            if (['A', 'B', 'C', 'D'].includes(answer.point_category)) {
-                pointCount[answer.point_category] += (4 - $i);
-            }
+          if (answer.point_category === 'A') {
+            pointCount['A'] += (4 - $i);
+          } else if (answer.point_category === 'B') {
+            pointCount['B'] += (4 - $i);
+          } else if (answer.point_category === 'C') {
+            pointCount['C'] += (4 - $i);
+          } else if (answer.point_category === 'D') {
+            pointCount['D'] += (4 - $i);
+          }
         });
-    });
+      });
+
       // 最も多い回答を返す
       const maxPoint = Math.max(...Object.values(pointCount));
       // maxPointが被った場合の優先順位
       const priority = ['A', 'D', 'C', 'B'];
       // maxPointが被った場合の優先順位に従って、resultを返す
       const priorityResult = priority.find((key) => pointCount[key] === maxPoint);
-      return {
-        result: priorityResult, // defaultの代わりに priorityResult を直接返す
-        pointCount: pointCount
-      };
-
+      return priorityResult ? priorityResult : 'default';
     };
 
     return {
