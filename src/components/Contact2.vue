@@ -185,6 +185,7 @@ export default {
         await setDoc(docRef, {
           answers: flatSelectedItems,
           result: result,
+          points: pointCount,
         }, { merge: true });
 
         // 計算結果に応じて遷移先のページを決定
