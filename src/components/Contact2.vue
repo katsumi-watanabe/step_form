@@ -170,7 +170,7 @@ export default {
     const handleClick = async () => {
       try {
         // 回答データの計算
-        const result = calculateResult(selectedItems);
+        const { result, pointCount } = calculateResult(selectedItems);
 
         // Firebase Firestoreに保存する
         const db = getFirestore();
