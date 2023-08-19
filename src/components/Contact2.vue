@@ -182,6 +182,9 @@ export default {
           return acc;
         }, {});
 
+        console.log("result:", result);
+        console.log("pointCount:", pointCount);
+
         await setDoc(docRef, {
           answers: flatSelectedItems,
           result: result,
@@ -241,8 +244,9 @@ export default {
       // maxPointが被った場合の優先順位
       const priority = ['A', 'D', 'C', 'B'];
       // maxPointが被った場合の優先順位に従って、resultを返す
-      const priorityResult = priority.find((key) => pointCount[key] === maxPoint);
-      return priorityResult ? priorityResult : 'default';
+      const result = priority.find((key) => pointCount[key] === maxPoint) || 'default';
+      return { result, pointCount }; // ここでresultとpointCountをオブジェクトとして返す
+
     };
 
     return {
