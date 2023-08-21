@@ -186,7 +186,7 @@ export default {
         console.log("pointCount:", pointCount);
 
         await setDoc(docRef, {
-          answers: flatSelectedItems,
+          // answers: flatSelectedItems,
           result: result,
           points: pointCount,
         }, { merge: true });
