@@ -8,6 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "chart.js": "^4.4.0",
+    "chartjs-adapter-date-fns": "^3.0.0",
     "firebase": "^9.23.0",
     "vue": "^3.3.2",
     "vue-router": "^4.2.2",
