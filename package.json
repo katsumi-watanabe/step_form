@@ -12,12 +12,14 @@
     "chartjs-adapter-date-fns": "^3.0.0",
     "firebase": "^9.23.0",
     "vue": "^3.3.2",
+    "vue-chartjs": "^5.2.0",
     "vue-router": "^4.2.2",
     "vuetify": "^3.3.6",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@jridgewell/sourcemap-codec": "^1.4.15",
+    "@types/chart.js": "^2.9.37",
     "@vitejs/plugin-vue": "^4.2.3",
     "vite": "^4.3.5"
   }
