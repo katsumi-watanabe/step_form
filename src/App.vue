@@ -2,7 +2,7 @@
   <div>
     <Header />
     <router-view></router-view>
-    <RadarChart 
+    <BarChart 
           v-bind:chartId="'my-radar-chart'"
           v-bind:cssClasses="'my-radar-chart-container'" />
     <Footer />
@@ -17,7 +17,7 @@ import Signup from '@/components/Signup.vue';
 import Contact2 from '@/components/Contact2.vue';
 import Result from '@/components/Result.vue';
 import Footer from '@/components/Footer.vue';
-import RadarChart from '@/components/MyPage/RadarChart.vue';
+import BarChart from '@/components/MyPage/BarChart.vue';
 
 export default {
   name: 'App',
@@ -29,7 +29,7 @@ export default {
     Footer,
     Login,
     Signup,
-    RadarChart,
+    BarChart,
   },
 };
 </script>
