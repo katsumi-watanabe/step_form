@@ -2,9 +2,6 @@
   <div>
     <Header />
     <router-view></router-view>
-    <BarChart 
-          v-bind:chartId="'my-radar-chart'"
-          v-bind:cssClasses="'my-radar-chart-container'" />
     <Footer />
   </div>
 </template>
@@ -17,7 +14,7 @@ import Signup from '@/components/Signup.vue';
 import Contact2 from '@/components/Contact2.vue';
 import Result from '@/components/Result.vue';
 import Footer from '@/components/Footer.vue';
-import BarChart from '@/components/MyPage/BarChart.vue';
+import HistoryGraph from '@/components/MyPage/HistoryGraph.vue';
 
 export default {
   name: 'App',
@@ -29,7 +26,7 @@ export default {
     Footer,
     Login,
     Signup,
-    BarChart,
+    HistoryGraph,
   },
 };
 </script>
@@ -41,11 +38,6 @@ html{
   font-size: 62.5%;
   scroll-behavior: smooth;
   font-family: 'Noto Sans JP', sans-serif;
-}
-/* assets/main.cssは全行コメントアウト */
-.my-radar-chart-container {
-  margin: 0 auto;
-  max-width: 500px;
 }
 .container{
   width: 100%;
