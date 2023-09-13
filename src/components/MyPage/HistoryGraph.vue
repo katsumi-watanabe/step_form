@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import { Radar } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, RadialLinearScale } from 'chart.js'
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, RadialLinearScale)
 
 export default {
   name: 'RadarChart',
@@ -51,6 +51,13 @@ export default {
       },
       chartOptions: {
         responsive: true
+      },
+      scales: {
+        r: {
+          beginAtZero: true, // スケールをゼロから始めるかどうか
+          min: 0,             // 最小値
+          max: 100            // 最大値
+        }
       }
     }
   }
