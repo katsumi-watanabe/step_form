@@ -1,7 +1,7 @@
 <template>
   <div class="answer-list">
       <ul>
-        <li v-for="(answer, index) in answers" :key="index">{{ answer }}</li>
+        <!-- <li v-for="(answer, index) in answers" :key="index">{{ answer }}</li> -->
       </ul>
   </div>
   <Radar
@@ -22,10 +22,8 @@ import {
   Legend
 } from 'chart.js'
 import { Radar } from 'vue-chartjs'
-import { getDatabase } from "firebase/database";
-
-const database = getDatabase();
-console.log(database);
+import { ref, onMounted } from 'vue';
+import { getDatabase, ref as dbRef, get } from 'firebase/database';
 
 ChartJS.register(
   RadialLinearScale,
@@ -62,6 +60,22 @@ export default {
       },
       chartOptions: {
         responsive: true
+      }
+    }
+  },
+  mounted() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      const db = getDatabase();
+      const answersRef = dbRef(db, 'answers'); // 'answers' テーブルに参照を設定
+      const snapshot = await get(answersRef);
+
+      if (snapshot.exists()) {
+        const fetchedData = Object.entries(snapshot.val()).map(([id, data]) => ({ id, ...data }));
+        // ここで fetchedData を this.chartData.datasets[0].data にセットする
+        // 例：this.chartData.datasets[0].data = fetchedData.map(item => item.someField);
       }
     }
   }
