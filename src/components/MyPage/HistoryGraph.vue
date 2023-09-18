@@ -72,6 +72,8 @@ export default {
       const answersRef = dbRef(db, 'answers'); // 'answers' テーブルに参照を設定
       const snapshot = await get(answersRef);
 
+      console.log(answersRef);
+      console.log(snapshot);
       if (snapshot.exists()) {
         const fetchedData = Object.entries(snapshot.val()).map(([id, data]) => ({ id, ...data }));
         // ここで fetchedData を this.chartData.datasets[0].data にセットする
