@@ -23,7 +23,6 @@ import {
 } from 'chart.js'
 import { Radar } from 'vue-chartjs'
 import { ref, onMounted } from 'vue';
-import { getDatabase, ref as dbRef, get } from 'firebase/database';
 
 ChartJS.register(
   RadialLinearScale,
@@ -63,24 +62,6 @@ export default {
       }
     }
   },
-  mounted() {
-    this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      const db = getDatabase();
-      const answersRef = dbRef(db, 'answers'); // 'answers' テーブルに参照を設定
-      const snapshot = await get(answersRef);
-
-      console.log(answersRef);
-      console.log(snapshot);
-      if (snapshot.exists()) {
-        const fetchedData = Object.entries(snapshot.val()).map(([id, data]) => ({ id, ...data }));
-        // ここで fetchedData を this.chartData.datasets[0].data にセットする
-        // 例：this.chartData.datasets[0].data = fetchedData.map(item => item.someField);
-      }
-    }
-  }
 }
 </script>
 
