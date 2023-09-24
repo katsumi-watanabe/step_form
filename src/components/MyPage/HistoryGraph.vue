@@ -27,7 +27,7 @@ import { collection } from "firebase/firestore";
 import { db } from "@/firebase.js"; 
 
 const answerLists = collection(db, "answers");
-console.log(answerListss);
+console.log(answerLists);
 
 ChartJS.register(
   RadialLinearScale,
