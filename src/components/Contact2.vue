@@ -174,7 +174,6 @@ export default {
 
         // Firebase Firestoreに保存する
         const db = getFirestore();
-        console.log(db);
         const docRef = doc(db, "answers", currentUser.value.uid);
 
         // selectedItemsをフラットなオブジェクトに変換する

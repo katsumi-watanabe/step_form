@@ -23,6 +23,11 @@ import {
 } from 'chart.js'
 import { Radar } from 'vue-chartjs'
 import { ref, onMounted } from 'vue';
+import { collection } from "firebase/firestore"; 
+import { db } from "@/firebase.js"; 
+
+const answerLists = collection(db, "answers");
+console.log(answerListss);
 
 ChartJS.register(
   RadialLinearScale,
