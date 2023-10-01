@@ -24,16 +24,27 @@ import {
 import { Radar } from 'vue-chartjs'
 import { ref, onMounted } from 'vue';
 import { collection, query, where, getDocs } from "firebase/firestore"; 
-import { db } from "@/firebase.js"; 
+import { db } from "@/firebase.js";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+  }
+});
 // const answerLists = collection(db, "answers");
+let results = [];
+let answers = [];
+
 const q = query(collection(db, "answers"));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
+  results.push(doc.data().result);
+  answers.push(doc.data().points);
 });
-// console.log(answerLists);
+console.log(results);
+console.log(answers[0]);
 
 ChartJS.register(
   RadialLinearScale,
