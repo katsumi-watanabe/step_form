@@ -28,23 +28,26 @@ import { db } from "@/firebase.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
+
+onAuthStateChanged(auth, async (user) => { // async を追加
   if (user) {
-    const uid = user.uid;
+    const uid = user.uid; // 既存の変数を使う
+    let results = [];
+    let answers = [];
+
+    const q = query(collection(db, "answers"));
+    const querySnapshot = await getDocs(q); // await が使えるようになる
+    querySnapshot.forEach((doc) => { // 第二引数の uid は不要
+      // 自身おユーザーデータのみを取得
+      if (uid === doc.id) {
+        results.push(doc.data().result);
+        answers.push(doc.data().points);
+      }
+    });
+    console.log(results);
+    console.log(answers[0]);
   }
 });
-// const answerLists = collection(db, "answers");
-let results = [];
-let answers = [];
-
-const q = query(collection(db, "answers"));
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
-  results.push(doc.data().result);
-  answers.push(doc.data().points);
-});
-console.log(results);
-console.log(answers[0]);
 
 ChartJS.register(
   RadialLinearScale,

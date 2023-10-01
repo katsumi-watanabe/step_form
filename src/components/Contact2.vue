@@ -110,7 +110,7 @@ import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import questions from '@/data/questions.json'
 import { getAuth } from 'firebase/auth'
-import { getFirestore, doc, setDoc } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, addDoc, collection } from 'firebase/firestore';
 
 export default {
   setup() {
@@ -182,11 +182,19 @@ export default {
           return acc;
         }, {});
 
+        const answersCollection = collection(db, "answers");  // 追加
+        const newDocRef = await addDoc(answersCollection, {  // 追加
+          uid: currentUser.value.uid,
+          result: result,
+          points: pointCount,
+        });  // 追加
+
+        console.log("Document written with ID: ", newDocRef.id);  // 追加
+
         console.log("result:", result);
         console.log("pointCount:", pointCount);
 
         await setDoc(docRef, {
-          // answers: flatSelectedItems,
           result: result,
           points: pointCount,
         }, { merge: true });
