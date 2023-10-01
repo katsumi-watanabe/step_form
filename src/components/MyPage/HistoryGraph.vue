@@ -23,11 +23,17 @@ import {
 } from 'chart.js'
 import { Radar } from 'vue-chartjs'
 import { ref, onMounted } from 'vue';
-import { collection } from "firebase/firestore"; 
+import { collection, query, where, getDocs } from "firebase/firestore"; 
 import { db } from "@/firebase.js"; 
 
-const answerLists = collection(db, "answers");
-console.log(answerLists);
+// const answerLists = collection(db, "answers");
+const q = query(collection(db, "answers"));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+});
+// console.log(answerLists);
 
 ChartJS.register(
   RadialLinearScale,
